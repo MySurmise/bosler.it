@@ -18,21 +18,25 @@ block content
                 span.wpm 
                 | WPM
         #quotearea
-            a#authorurl
-                img#authorimg
-            a#originurl
-                img#originimg
+            a#authorurl(href=authorurl)
+                img#authorimg(src=authorimg)
+            a#originurl(href=originurl)
+                img#originimg(src=originimg)
+                    
             #textarea
                 span#rightfinished
                 span#rightcurrent
                 span#wrongcurrent
-                span#unfinishedcurrent
-                span#unfinished
-            #authorname
-            a#restartlink(href='')
+                span#unfinishedcurrent 
+                span#unfinished #{text}
+            #authorname #{authorname}
+            a#restartlink(href=quoteurl)
                 #restart
                     img#restartarrow(src='../../Images/restart.svg')
-            a#nextlink(href='')
+            a#nextlink(href='/newrandom')
                 #next
                     img#nextarrow(src='../../Images/next.svg')
         input#inputfield
+    
+    script
+        include ../../../Javascript/game.js

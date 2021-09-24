@@ -1,4 +1,5 @@
 
+/*
 async function fetchJSON() {
     const response = await fetch(('../Quotes/quote.json'))
     const quote = await response.json()
@@ -7,22 +8,29 @@ async function fetchJSON() {
 fetchJSON().then(value => main(value))
 
 
-/*
+
 fetch('../files/quote.json')
     .then(response => response.json())
     .then(quote => (window.quotefetched = quote))
 
 await sleep(2000);
 */
+main()
 
-function main(val) {
+function main() {
+    var val = {
+        "text" : document.getElementById('unfinished').innerHTML
+    }
+    /*
     document.getElementById('authorimg').src = val.authorimg
     document.getElementById('authorurl').href=val.authorurl
     document.getElementById('originimg').src=val.originimg
     document.getElementById('originurl').href=val.originurl
     document.getElementById('authorname').innerHTML = " - " + val.authorname
+    */
     textlength = val.text.trim().length
     splitted_quote = val.text.trim().split(" ")
+    console.log(splitted_quote, val, val.text)
     finished = []
     quote = val
     current = ""
