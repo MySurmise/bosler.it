@@ -4,6 +4,7 @@
   "description": "Website to type Quotes",
   "main": "index.js",
   "scripts": {
+    "watch": "nodemon ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,6 +20,16 @@
   "homepage": "https://github.com/MySurmise/TypeQuotes#readme",
   "dependencies": {
     "chalk": "latest",
-    "cowsay": "latest"
+    "consolidate": "^0.16.0",
+    "cowsay": "latest",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4",
+    "html": "^1.0.0",
+    "mustache": "^4.2.0",
+    "node-fetch": "^2.6.2",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }
