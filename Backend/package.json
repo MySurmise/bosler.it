@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/MySurmise/TypeQuotes#readme",
   "dependencies": {
+    "better-sqlite3": "^7.4.3",
     "chalk": "latest",
     "consolidate": "^0.16.0",
     "cowsay": "latest",
@@ -26,8 +27,10 @@
     "express-handlebars": "^5.3.4",
     "html": "^1.0.0",
     "mustache": "^4.2.0",
+    "mysql": "^2.18.1",
     "node-fetch": "^2.6.2",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
