@@ -228,7 +228,8 @@ font-size:1.5rem;
   margin-left:auto;
   margin-right:auto;
   font-size:2rem;
-  font-family:'Verdana', Times, serif;
+  /*font-family:'Verdana', Times, serif; */
+  font-family: "DejaVu Sans Mono", monospace;
   z-index: 1;
   transition: padding-bottom 0.5s ease-out;
   user-select: none;
@@ -285,6 +286,7 @@ font-size:1.5rem;
 #wrongcurrent {
   display:inline;
   color: rgb(134, 0, 0);
+  background-color: rgba(200, 0, 0, 0.5);
   text-decoration: underline;
 }
 #unfinished {
@@ -293,8 +295,8 @@ font-size:1.5rem;
 }
 #unfinishedcurrent {
     border-left:1px solid black;
-    margin-left: -1px;
     text-shadow: 0.2px 0 currentColor;
+    margin-left: -1px;
 }
 
 
@@ -408,7 +410,8 @@ font-size:1.5rem;
     width: 30%;
     background-color: bisque;
    font-size:1.5rem;
-  font-family:'Verdana', Times, serif;
+  /*font-family:'Verdana', Times, serif; */
+  font-family: 'Courier New', Courier, monospace;
   padding: 1.5rem;
   margin: 0;
   margin-left:auto;
