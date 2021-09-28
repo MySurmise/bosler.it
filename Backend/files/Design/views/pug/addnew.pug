@@ -5,13 +5,18 @@ block content
         h3.centeredblock Commit new Quote
         textarea.newquoteinput#quoteinput(rows=1, placeholder="Paste Quote here")  
         div.flexbox(style = "width: 96%").centeredinline
-            textarea.newquoteinput#languageinput(rows=1, placeholder="Language")
-            input(type='select', placeholder="Author name", list='cars').newquoteinput#authornameinput
-            datalist#cars
+            input.newquoteinput#languageinput(rows=1, placeholder="Language")
+            input(type='select', placeholder="Author name (press Enter for autosearch)", list='authors').newquoteinput#authornameinput
+            datalist#authors
                 each val in authorArray
                     option= val
-        img#authorimg
+        a#newauthlink
+            img#newauthimg
+        input(type='select', placeholder="Author Wikipedia/Description/Other Main Page URL").newquoteinput#authorurlinput
+        input(type='select', placeholder="Author image URL").newquoteinput#authorimginput
         
+
+
         
         
 

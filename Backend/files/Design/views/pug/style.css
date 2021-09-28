@@ -491,7 +491,7 @@ font-size:1.5rem;
 
 #newquoteform {
   background-color: rgb(219, 177, 61) ;
-  width: 45%;
+  width: 50%;
   position:relative;
   height:auto;
   background-color:rgb(219, 177, 61);
@@ -548,4 +548,15 @@ text-align: center
   text-align:center
 }
 
-
+#newauthimg{
+    position: absolute;
+   right: -20rem;
+    top: 12rem;
+    padding:1rem;
+    transform: translate(-50%, 0); 
+    background-color: rgb(219, 177, 61);
+    height:10rem;
+    max-width: 12rem;
+    border-radius: 1rem;
+      filter: drop-shadow(0.2em 0.2em 0.5em #00000071);
+}
