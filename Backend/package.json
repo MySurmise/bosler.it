@@ -26,11 +26,13 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.3.4",
     "html": "^1.0.0",
+    "langdetect": "^0.2.1",
     "mustache": "^4.2.0",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.2",
     "pug": "^3.0.2",
-    "sqlite3": "^4.2.0"
+    "sqlite3": "^4.2.0",
+    "wikijs": "^6.3.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"

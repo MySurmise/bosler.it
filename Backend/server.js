@@ -6,9 +6,9 @@ const path = require("path")
 const fs = require("fs")
 const dbm = require("better-sqlite3")
 const util = require("util")
-
-
-
+const langdetect = require("langdetect")
+const wiki = require("wikijs").default
+const fetch = require("node-fetch")
 
 const timelog = (objectToLog) => {
   currentTime = new Date(Date.now())
@@ -29,13 +29,62 @@ const db = new dbm(path.join(__dirname, 'files/Quotes/DB/Quotes.db'), { verbose:
 var quoteids = new Set()
 
 
-app.get(/^\/(newsingle)?$/, (req, res) => {
+app.get(['/', '/newsingle'], (req, res) => {
 
-  randomQuote = db.prepare(util.format('SELECT quoteid FROM Quotes ORDER BY RANDOM() LIMIT 1')).get()
+  randomQuote = db.prepare('SELECT quoteid FROM Quotes ORDER BY RANDOM() LIMIT 1').get()
   res.redirect('/quote/' + randomQuote.quoteid)
 })
- 
+
+
+app.get('/addnew', (req, res) => {
+  console.log('Addnew')
+    authors = db.prepare('select distinct authorname from quotes').all()
+    authorArray = []
+    authors.forEach((entry) => {
+    authorArray.push(entry.authorname)
+  })
+  console.log(authorArray)
+  res.render('pug/addnew.pug', {authorArray})
+})
+
+app.get('/search', (req, res) => {
+  console.log(req.query.query)
+  res.json(langdetect.detect(req.query.query))
+})
+
+app.get('/authorsearch', (req, res) => {
+  currentauth = req.query.q
+  console.log('"https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + currentauth + '&utf8=&format=json"')
+  fetch('https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=' + currentauth + '&utf8=&format=json')
+    .then(resp => resp.json()).then(resp => {
+    author = Object.values(resp.query.search)[0].title
+    if (typeof author !== "undefined") {
+      return author
+    } else { throw new Error('Nothing found!') }
+  })
+    .then(author => {
+      console.log('"https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&titles=' + author + '&format=json"')
+      return fetch('https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&titles=' + author + '&format=json')
+}).then(resp => resp.json())
+    .then(resp => {
+      console.log(resp = Object.values(resp.query.pages)[0].pageimage)
+      return resp
+    }).then(resp => {
+      if(typeof(resp) !== "undefined") {
+        res.send('https://commons.wikimedia.org/wiki/Special:FilePath/' + resp)
+      } else {
+        res.send(resp)
+      }
+    }).catch(err => console.log(err))
+
+
+})
+
+
+
 app.get('/quote/:quoteid([0-9]+)', (req, res) => {
+  
+
   
 
   timelog("Received GET Request for quote " + req.params.quoteid)

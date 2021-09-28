@@ -114,7 +114,7 @@ outline: none;
 
 #stats {
   position:relative;
-  width: 48rem;
+  width: 45%;
   height: 4rem;
   background-color: bisque;
   font-size:1.5rem;
@@ -458,6 +458,94 @@ font-size:1.5rem;
   to {
     opacity:1;
   }
+}
+
+
+
+
+
+
+/* ADDNEW PAGE */
+.newquoteinput {
+   width: 90%;
+   height:10;
+    background-color: bisque;
+   font-size:1.5rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1.5rem;
+  margin: 0;
+  margin-left:auto;
+  margin-right:auto;
+  display:flex;
+  border: none;
+  border-radius: 5px;
+  border-top: 0px;
+  outline: none;
+  z-index: 0;
+    transition: height 0.5s ease-out;
+    overflow:hidden;
+  resize:none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#newquoteform {
+  background-color: rgb(219, 177, 61) ;
+  width: 45%;
+  position:relative;
+  height:auto;
+  background-color:rgb(219, 177, 61);
+  border-radius: 1rem;
+  padding: 2rem;
+  padding-top: 1rem;
+  margin: 0;
+  margin-top:2rem;
+  margin-left:auto;
+  margin-right:auto;
+  font-size:2rem;
+  /*font-family:'Verdana', Times, serif; */
+  font-family: "DejaVu Sans Mono", monospace;
+  z-index: 1;
+  transition: padding-bottom 0.5s ease-out;
+}
+
+.centeredblock{
+  display:block;
+text-align: center
+
+}
+.centeredinline{
+  display: inline;
+  position:relative;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+
+.flexbox{
+  display:flex;
+  justify-content: center ;
+}
+
+.margin{
+  margin: 2rem;
+}
+
+.nomargin{
+  margin: 0;
+}
+
+#authornameinput{
+  width: 60%; 
+  margin-left:0; 
+  margin-right:0
+}
+
+#languageinput{
+  width: 15%; 
+  margin-left:0; 
+  margin-right:3rem;
+  text-align:center
 }
 
 
