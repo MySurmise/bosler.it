@@ -131,10 +131,6 @@ app.get("/quote/:quoteid([0-9]+)", (req, res) => {
     quoteData.originimg = "/defaultorigin.png";
   }
   timelog(quoteData);
-  timelog(Object.keys(quoteData));
-  Object.keys(quoteData).forEach((quote) => {
-    timelog(typeof quoteData[quote]);
-  });
   res.render("pug/quotetyping", quoteData);
 });
 

@@ -283,7 +283,15 @@ font-size:1.5rem;
    background-color: rgba(255,255,255,20%);
    border-radius: 1rem;
    user-select: none;
+   max-height: 20rem;
+  overflow: auto;
+  scrollbar-width: none;
+  ms-overflow-style: none;  /* Internet Explorer 10+ */
  }
+
+#textarea::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
 
 
 #rightfinished {

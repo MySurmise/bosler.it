@@ -10,6 +10,7 @@ submitquote = document.getElementById('submitQuote')
 authorurlinput = document.getElementById('authorurlinput')
 clearbutton = document.getElementById('clear')
 commitpass = document.getElementById('commitpass')
+
 clearbutton.addEventListener("click", () => {
   quoteinput.value = ""
   language.value = ""
