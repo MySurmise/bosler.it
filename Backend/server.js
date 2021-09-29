@@ -1,7 +1,7 @@
 const express = require("express");
 const pug = require("pug");
 const app = express();
-const port = 1337;
+const port = 80;
 const path = require("path");
 const fs = require("fs");
 const dbm = require("better-sqlite3");
@@ -161,10 +161,10 @@ app.listen(port, () => {
   timelog(`listening at http://localhost:${port}`);
 });
 
-/*
+
 https.createServer({
   key: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/privkey1.pem"),
   cert: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/cert1.pem"),
   ca: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/chain1.pem")
 }, app).listen(443);
-*/
+
