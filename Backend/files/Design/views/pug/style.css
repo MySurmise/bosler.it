@@ -4,6 +4,11 @@ body {
   background-attachment: fixed;
 }
 
+html {
+  overflow: hidden;
+}
+
+
 .semitransparent {
    background-color: rgba(92, 76, 76, 0.192);
   }
@@ -114,7 +119,7 @@ outline: none;
 
 #stats {
   position:relative;
-  width: 45%;
+  width: 43%;
   height: 4rem;
   background-color: bisque;
   font-size:1.5rem;
@@ -183,6 +188,7 @@ outline: none;
     font-weight: bold;
     padding-top:0.5rem;
     line-height:1;
+   transition:background-color 0.2s ease-out;
 
 }
 
@@ -206,6 +212,8 @@ font-size:2rem;
   line-height:1;
   text-align: center;
   padding-top:0.3rem;
+   transition:background-color 0.2s ease-out;
+
 }
 
 .acc {
@@ -322,6 +330,7 @@ font-size:1.5rem;
 }
 
 #restart {
+  display:none;
   position:absolute;
   height: 8rem;
   width: 8rem;
@@ -354,7 +363,16 @@ font-size:1.5rem;
   bottom:1.5rem;
 }
 
+#restart.restarthover{
+    height:9rem;
+  width:9rem;
+  left:1rem;
+  bottom:1.5rem;
+}
+
+
 #next {
+  display:none;
   position:absolute;
   height: 8rem;
   width: 8rem;
@@ -388,6 +406,12 @@ font-size:1.5rem;
   bottom:2.5rem;
 }
 
+#next.nexthover {
+  height:7rem;
+  width:7rem;
+  right:1.5rem;
+  bottom:2.5rem;
+}
 
 
 .noscript {

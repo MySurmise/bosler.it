@@ -1,7 +1,7 @@
 const express = require("express");
 const pug = require("pug");
 const app = express();
-const port = 5000;
+const port = 1337;
 const path = require("path");
 const fs = require("fs");
 const dbm = require("better-sqlite3");
@@ -9,27 +9,21 @@ const util = require("util");
 const langdetect = require("langdetect");
 const wiki = require("wikijs").default;
 const fetch = require("node-fetch");
+const { time } = require("console");
 
 const timelog = (objectToLog) => {
   currentTime = new Date(Date.now());
   if (typeof objectToLog == "string" || typeof objectToLog == "undefined") {
-    console.log(
-      "[" +
-        ("" + currentTime).split(" ").slice(1, 5).join(" ") +
-        "] " +
-        objectToLog
-    );
+    console.log("[" + ("" + currentTime).split(" ").slice(1, 5).join(" ") + "] " + objectToLog);
   } else {
-    console.log(
-      "[" + ("" + currentTime).split(" ").slice(1, 5).join(" ") + "] "
-    );
+    console.log("[" + ("" + currentTime).split(" ").slice(1, 5).join(" ") + "] ");
     console.log(objectToLog);
   }
 };
 
 app.set("view engine", "pug");
 app.set("views", __dirname + "/files/Design/views");
-app.use(express.static(path.join(__dirname, "files")));
+app.use(express.static(path.join(__dirname, "files/public")));
 
 const db = new dbm(path.join(__dirname, "files/Quotes/DB/Quotes.db"), {
   verbose: timelog,
@@ -38,9 +32,7 @@ const db = new dbm(path.join(__dirname, "files/Quotes/DB/Quotes.db"), {
 var quoteids = new Set();
 
 app.get(["/", "/newsingle"], (req, res) => {
-  randomQuote = db
-    .prepare("SELECT quoteid FROM Quotes ORDER BY RANDOM() LIMIT 1")
-    .get();
+  randomQuote = db.prepare("SELECT quoteid FROM Quotes ORDER BY RANDOM() LIMIT 1").get();
   res.redirect("/quote/" + randomQuote.quoteid);
 });
 
@@ -61,9 +53,8 @@ app.get("/search", (req, res) => {
 });
 
 app.get("/.well-known/acme-challenge/6s36QDvfVYI-Ma9wV2lctR2wQw9_RqzYEgT7AmHV9HI", (req, res) => {
-  res.send("6s36QDvfVYI-Ma9wV2lctR2wQw9_RqzYEgT7AmHV9HI.T8nJYvuumLTvxwQgP7c74XuRyvEYJmqGKT5VyU-pcU0")
-})
-
+  res.send("6s36QDvfVYI-Ma9wV2lctR2wQw9_RqzYEgT7AmHV9HI.T8nJYvuumLTvxwQgP7c74XuRyvEYJmqGKT5VyU-pcU0");
+});
 
 /* Authorsearch. Abandoned because also possible in browser and my Server is literally a Raspi.
 app.get("/authorsearch", (req, res) => {
@@ -141,11 +132,7 @@ app.get("/quote/:quoteid([0-9]+)", (req, res) => {
       quoteurl: "/quote/" + req.params.quoteid
       */
 
-  quoteData = db
-    .prepare(
-      util.format("select * from Quotes where quoteid = %d", req.params.quoteid)
-    )
-    .get();
+  quoteData = db.prepare(util.format("select * from Quotes where quoteid = %d", req.params.quoteid)).get();
   if (typeof quoteData === "undefined") {
     res.render("pug/quotetyping", {
       text: "This quote is not available. Come not back later.",
@@ -154,8 +141,19 @@ app.get("/quote/:quoteid([0-9]+)", (req, res) => {
     });
     return;
   }
+
   quoteData.quoteurl = req.url;
+  if (quoteData.authorimg == "" || quoteData.authorimg == null) {
+    quoteData.authorimg = "/defaultauthor.png";
+  }
+  if (quoteData.originimg == "" || quoteData.originimg == null) {
+    quoteData.originimg = "/defaultorigin.png";
+  }
   timelog(quoteData);
+  timelog(Object.keys(quoteData));
+  Object.keys(quoteData).forEach((quote) => {
+    timelog(typeof quoteData[quote]);
+  });
   res.render("pug/quotetyping", quoteData);
 });
 
@@ -163,7 +161,10 @@ app.listen(port, () => {
   timelog(`listening at http://localhost:${port}`);
 });
 
-app.listen(443, () => {
-  timelog(`listening at https://localhost:` + 443);
-});
-
+/*
+https.createServer({
+  key: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/privkey1.pem"),
+  cert: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/cert1.pem"),
+  ca: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/chain1.pem")
+}, app).listen(443);
+*/
