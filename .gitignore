@@ -1,3 +1,4 @@
 node_modules
-Quotes.db
+*.db
 .well-known
+*db-journal
