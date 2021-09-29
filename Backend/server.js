@@ -10,6 +10,7 @@ const langdetect = require("langdetect");
 const wiki = require("wikijs").default;
 const fetch = require("node-fetch");
 const { time } = require("console");
+const https = require("https")
 
 const timelog = (objectToLog) => {
   currentTime = new Date(Date.now());
