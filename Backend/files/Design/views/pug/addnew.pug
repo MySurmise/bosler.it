@@ -3,6 +3,10 @@ extends layouts/main.pug
 block content 
     #newquoteform
         h3.centeredblock Commit new Quote
+        a#newauthlink
+            img#newauthimg
+        a#neworiginlink
+            img#neworiginimg
         textarea.newquoteinput#quoteinput(rows=1, placeholder="Paste Quote here")  
         div.flexbox(style = "width: 96%").centeredinline
             input.newquoteinput#languageinput(rows=1, placeholder="Language")
@@ -10,10 +14,16 @@ block content
             datalist#authors
                 each val in authorArray
                     option= val
-        a#newauthlink
-            img#newauthimg
+        
         input(type='select', placeholder="Author Wikipedia/Description/Other Main Page URL").newquoteinput#authorurlinput
         input(type='select', placeholder="Author image URL").newquoteinput#authorimginput
+        br
+        input(type='select', placeholder="Origin of Quote URL (Youtube Video or Amazon Book)").newquoteinput#originurlinput
+        input(type='select', placeholder="Origin image URL (autofills from given website)").newquoteinput#originimginput
+        br 
+        div.flexbox(style = "justify-content:space-between")
+            input(type='password', placeholder="Instant commit Password (optional)").newquoteinput#commitpass
+            button#submitQuote submit
         
 
 

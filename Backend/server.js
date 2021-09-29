@@ -60,6 +60,10 @@ app.get("/search", (req, res) => {
   res.json(langdetect.detect(req.query.query));
 });
 
+app.get("/.well-known/acme-challenge/6s36QDvfVYI-Ma9wV2lctR2wQw9_RqzYEgT7AmHV9HI", (req, res) => {
+  res.send("6s36QDvfVYI-Ma9wV2lctR2wQw9_RqzYEgT7AmHV9HI.T8nJYvuumLTvxwQgP7c74XuRyvEYJmqGKT5VyU-pcU0")
+})
+
 
 /* Authorsearch. Abandoned because also possible in browser and my Server is literally a Raspi.
 app.get("/authorsearch", (req, res) => {
@@ -158,3 +162,8 @@ app.get("/quote/:quoteid([0-9]+)", (req, res) => {
 app.listen(port, () => {
   timelog(`listening at http://localhost:${port}`);
 });
+
+app.listen(443, () => {
+  timelog(`listening at https://localhost:` + 443);
+});
+
