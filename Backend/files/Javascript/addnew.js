@@ -8,23 +8,32 @@ originimginput = document.getElementById("originimginput");
 neworiginimg = document.getElementById("neworiginimg");
 submitquote = document.getElementById('submitQuote')
 authorurlinput = document.getElementById('authorurlinput')
-
+clearbutton = document.getElementById('clear')
+commitpass = document.getElementById('commitpass')
+clearbutton.addEventListener("click", () => {
+  quoteinput.value = ""
+  language.value = ""
+  authornameinput.value = ""
+  authorimg.value = ""
+  authorurlinput.value = ""
+  originurlinput.value = ""
+  originimginput.value = ""
+})
 
 submitquote.addEventListener("click", () => {
 
-    console.log("ndeomlnedlmunm")
-    quotesubmitquery = {
-        text: quoteinput.value,
-        lang: language.value,
-        authorname: authornameinput.value,
-        authorimg: authorimg.value,
-        authorurl: authorurlinput.value,
-        originurl: originurlinput.value,
-        originimg: originimginput.value,
-        
-    }
+  quotesubmitquery = {
+    text: quoteinput.value,
+    lang: language.value,
+    authorname: authornameinput.value,
+    authorimg: authorimg.value,
+    authorurl: authorurlinput.value,
+    originurl: originurlinput.value,
+    originimg: originimginput.value,
+    commitpass: commitpass.value,
+  }
 
-    window.location.href = '/submit?' + objectToQueryString(quotesubmitquery)
+  window.location.href = '/submit?' + objectToQueryString(quotesubmitquery)
 })
 
 originurlinput.addEventListener("input", () => {
@@ -84,10 +93,10 @@ authornameinput.addEventListener("keydown", (event) => {
         document.getElementById("authorurlinput").value = link;
         fetch(
           "https://" +
-            language.value +
-            ".wikipedia.org/w/api.php?action=query&prop=pageimages&titles=" +
-            title +
-            "&format=json&origin=*"
+          language.value +
+          ".wikipedia.org/w/api.php?action=query&prop=pageimages&titles=" +
+          title +
+          "&format=json&origin=*"
         )
           .then((resp) => resp.json())
           .then((resp) => {
@@ -103,17 +112,14 @@ authornameinput.addEventListener("keydown", (event) => {
   }
 });
 
-window.onload = function () {
-  quoteinput.value = "";
-};
 
 function objectToQueryString(obj) {
-    var str = [];
-    for (var p in obj)
-        if (obj.hasOwnProperty(p)) {
-            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        }
-    return str.join("&");
+  var str = [];
+  for (var p in obj)
+    if (obj.hasOwnProperty(p)) {
+      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+    }
+  return str.join("&");
 }
 
 function extractRoot(url) {
@@ -144,13 +150,13 @@ const extractImg = (url) => {
     return (
       "https://i.ytimg.com/vi/" +
       url.split("youtu.be/")[1].slice(0, 11) +
-      "/maxresdefault.jpg"
+      "/hqdefault.jpg"
     );
   } else if (root == "youtube.com") {
     return (
       "https://i.ytimg.com/vi/" +
       url.split("watch?v=")[1].slice(0, 11) +
-      "/maxresdefault.jpg"
+      "/hqdefault.jpg"
     );
   }
 };
@@ -163,4 +169,9 @@ function checklanguage() {
   }
 }
 
-function checkauthor(event) {}
+function checkauthor(event) { }
+
+
+window.onload = function () {
+  document.getElementById('commitpass').value = "";
+};

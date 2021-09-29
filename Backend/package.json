@@ -24,6 +24,7 @@
     "cheerio": "^1.0.0-rc.10",
     "consolidate": "^0.16.0",
     "cowsay": "latest",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.4",
     "got": "^11.8.2",

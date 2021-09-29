@@ -1,7 +1,5 @@
 const express = require("express");
 const pug = require("pug");
-const app = express();
-const port = 80;
 const path = require("path");
 const fs = require("fs");
 const dbm = require("better-sqlite3");
@@ -11,7 +9,11 @@ const wiki = require("wikijs").default;
 const fetch = require("node-fetch");
 const { time } = require("console");
 const https = require("https")
+const os = require("os")
+const crypto = require("crypto");
+const { send } = require("process");
 
+const app = express();
 const timelog = (objectToLog) => {
   currentTime = new Date(Date.now());
   if (typeof objectToLog == "string" || typeof objectToLog == "undefined") {
@@ -30,6 +32,55 @@ const db = new dbm(path.join(__dirname, "files/Quotes/DB/Quotes.db"), {
   verbose: timelog,
   fileMustExist: true,
 });
+
+const insertIntoQuotes = (quoteObject) => {
+  console.log(quoteObject)
+  console.log(util.format(`insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) 
+    values(
+    '%s',   // lang
+    '%s',   // text
+    '%s',   // authorname
+    '%s',   // authorimg
+    '%s',   // authorurl
+    '%s',   // originurl
+    '%s'    // originimg
+    )`, quoteObject.lang, quoteObject.text, quoteObject.authorname, quoteObject.authorimg, quoteObject.authorurl,
+    quoteObject.originurl, quoteObject.originimg))
+
+  db.prepare(
+    util.format("insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+      quoteObject.lang, quoteObject.text, quoteObject.authorname, quoteObject.authorimg, quoteObject.authorurl,
+      quoteObject.originurl, quoteObject.originimg)
+  ).run()
+}
+
+
+
+const insertIntoQuoteQueue = (quoteObject) => { //WARNING! Queue!!
+  queuedb = new dbm(path.join(__dirname, "files/Quotes/DB/queuedb.db"), {
+    verbose: timelog,
+  });
+  console.log(quoteObject)
+  console.log(util.format(`insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) 
+    values(
+    '%s',   // lang
+    '%s',   // text
+    '%s',   // authorname
+    '%s',   // authorimg
+    '%s',   // authorurl
+    '%s',   // originurl
+    '%s'    // originimg
+    )`, quoteObject.lang, quoteObject.text, quoteObject.authorname, quoteObject.authorimg, quoteObject.authorurl,
+    quoteObject.originurl, quoteObject.originimg))
+
+  queuedb.prepare(
+    util.format("insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+      quoteObject.lang, quoteObject.text, quoteObject.authorname, quoteObject.authorimg, quoteObject.authorurl,
+      quoteObject.originurl, quoteObject.originimg)
+  ).run()
+}
+
+
 var quoteids = new Set();
 
 app.get(["/", "/newsingle"], (req, res) => {
@@ -56,6 +107,133 @@ app.get("/search", (req, res) => {
 app.get("/.well-known/acme-challenge/6s36QDvfVYI-Ma9wV2lctR2wQw9_RqzYEgT7AmHV9HI", (req, res) => {
   res.send("6s36QDvfVYI-Ma9wV2lctR2wQw9_RqzYEgT7AmHV9HI.T8nJYvuumLTvxwQgP7c74XuRyvEYJmqGKT5VyU-pcU0");
 });
+
+
+app.get("/quote/:quoteid([0-9]+)", (req, res) => {
+  timelog("Received GET Request for quote " + req.params.quoteid);
+
+
+  quoteData = db.prepare(util.format("select * from Quotes where quoteid = %d", req.params.quoteid)).get();
+  if (typeof quoteData === "undefined") {
+    res.render("pug/quotetyping", {
+      text: "This quote is not available. Come not back later.",
+      authorname: "- The Creator (Not Tyler)",
+      quoteurl: "https://youtube.com/watch?v=dQw4w9WgXcQ",
+    });
+    return;
+  }
+
+  quoteData.quoteurl = req.url;
+  if (quoteData.authorimg == "" || quoteData.authorimg == null) {
+    quoteData.authorimg = "/defaultauthor.png";
+  }
+  if (quoteData.originimg == "" || quoteData.originimg == null) {
+    quoteData.originimg = "/defaultorigin.png";
+  }
+  timelog(quoteData);
+  timelog(Object.keys(quoteData));
+  Object.keys(quoteData).forEach((quote) => {
+    timelog(typeof quoteData[quote]);
+  });
+  res.render("pug/quotetyping", quoteData);
+});
+
+app.get('/submit', (req, res) => {
+  if (crypto.createHash('sha256').update(req.query.commitpass).digest('base64') == "YaEktf/spITQaDGuMHjO0xWBkVIwS9ncEpZ1KvlvMKs=") {
+    insertIntoQuotes(req.query)
+    res.redirect("success")
+  } else {
+    insertIntoQuoteQueue(req.query)
+    res.redirect("enqueued")
+  }
+})
+
+app.get('/success', (req, res) => {
+    res.render("pug/success")
+})
+
+app.get('/enqueued', (req, res) => {
+    res.render("pug/enqueued")
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+if (!os.release().endsWith('WSL2')) {
+  const port = 80
+  app.listen(port, () => {
+    timelog(`listening at http://quote.ddns.net:${port}`);
+  });
+
+  https.createServer({
+    key: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/privkey1.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/cert1.pem"),
+    ca: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/chain1.pem")
+  }, app).listen(443);
+  timelog(`listening at https://quote.ddns.net:${443}`);
+
+} else {
+  const port = 5000
+  app.listen(port, () => {
+    timelog(`listening at http://localhost:${port}`);
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* Authorsearch. Abandoned because also possible in browser and my Server is literally a Raspi.
 app.get("/authorsearch", (req, res) => {
@@ -118,54 +296,3 @@ app.get("/authorsearch", (req, res) => {
     .catch((err) => console.log(err));
 });
 */
-
-app.get("/quote/:quoteid([0-9]+)", (req, res) => {
-  timelog("Received GET Request for quote " + req.params.quoteid);
-  /*
-    quoteData = JSON.parse(fs.readFileSync(path.join(__dirname, 'files/Quotes/quote.json'), 'utf8'))
-    
-    authorurl: quoteData.authorurl,
-      authorimg: quoteData.authorimg,
-      originurl: quoteData.originurl,
-      originimg: quoteData.originimg,
-      text: quoteData.text,
-      authorname: quoteData.authorname,
-      quoteurl: "/quote/" + req.params.quoteid
-      */
-
-  quoteData = db.prepare(util.format("select * from Quotes where quoteid = %d", req.params.quoteid)).get();
-  if (typeof quoteData === "undefined") {
-    res.render("pug/quotetyping", {
-      text: "This quote is not available. Come not back later.",
-      authorname: "- The Creator (Not Tyler)",
-      quoteurl: "https://youtube.com/watch?v=dQw4w9WgXcQ",
-    });
-    return;
-  }
-
-  quoteData.quoteurl = req.url;
-  if (quoteData.authorimg == "" || quoteData.authorimg == null) {
-    quoteData.authorimg = "/defaultauthor.png";
-  }
-  if (quoteData.originimg == "" || quoteData.originimg == null) {
-    quoteData.originimg = "/defaultorigin.png";
-  }
-  timelog(quoteData);
-  timelog(Object.keys(quoteData));
-  Object.keys(quoteData).forEach((quote) => {
-    timelog(typeof quoteData[quote]);
-  });
-  res.render("pug/quotetyping", quoteData);
-});
-
-app.listen(port, () => {
-  timelog(`listening at http://localhost:${port}`);
-});
-
-
-https.createServer({
-  key: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/privkey1.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/cert1.pem"),
-  ca: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/chain1.pem")
-}, app).listen(443);
-
