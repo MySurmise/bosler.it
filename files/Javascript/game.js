@@ -52,7 +52,7 @@ function main() {
   checkwpm = window.setInterval(function () {
   accuracy = acc.innerHTML
     if (started) {
-      textarea.scrollTop = scrollHeight * (typedchars / textlength)
+      textarea.scrollTop = textarea.scrollHeight * (typedchars / textlength)
       if (accuracy > 80) {
         accuracyfield.style.backgroundColor =
           "hsla(" + (0.0125 * Math.pow((accuracy - 80), 3)) + ", 82.8%, 45.7%, 1)";
