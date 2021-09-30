@@ -45,7 +45,7 @@ function main() {
   mistakes = 0;
   inputfield.onpaste = (e) => e.preventDefault();
   textarea = document.getElementById("textarea")
-
+  textarea.scrollTop = 0
   
 
 

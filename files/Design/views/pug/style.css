@@ -287,7 +287,7 @@ font-size:1.5rem;
   overflow: auto;
   scrollbar-width: none;
   ms-overflow-style: none;  /* Internet Explorer 10+ */
-  transition: scrollTop 0.5s ease-out;
+  scroll-behavior: smooth
  }
 
 #textarea::-webkit-scrollbar { 
