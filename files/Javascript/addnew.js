@@ -16,10 +16,11 @@ clearbutton.addEventListener("click", () => {
   quoteinput.value = ""
   language.value = ""
   authornameinput.value = ""
-  authorimg.value = ""
+  authorimginput.value = ""
   authorurlinput.value = ""
   originurlinput.value = ""
   originimginput.value = ""
+  
 })
 
 submitquote.addEventListener("click", () => {
@@ -43,6 +44,8 @@ originurlinput.addEventListener("input", () => {
   neworiginimg.src = extractImg(originurlinput.value);
   neworiginlink.href = originurlinput.value;
 });
+
+
 
 quoteinput.addEventListener("input", (event) => {
   quoteinput.style.height = "";
@@ -75,7 +78,16 @@ quoteinput.addEventListener("input", (event) => {
   }
 });
 
-authornameinput.addEventListener("keydown", (event) => {
+
+authornameinput.addEventListener("focusout", (event) => {
+  if (typeof (title) !== "undefined") {
+    authornameinput.value = title
+  }
+  }
+)
+
+
+authornameinput.addEventListener("keyup", (event) => {
   {
     currentauth = authornameinput.value;
     requeststring =
@@ -102,13 +114,13 @@ authornameinput.addEventListener("keydown", (event) => {
         )
           .then((resp) => resp.json())
           .then((resp) => {
-            console.log(
-              (img =
-                "https://commons.wikimedia.org/wiki/Special:FilePath/" +
-                Object.values(resp.query.pages)[0].pageimage)
-            );
-            document.getElementById("authorimginput").value = img;
-            authorimg.src = img;
+            if (typeof (img = Object.values(resp.query.pages)[0].pageimage) !== "undefined") {
+              authorimg.src = "https://commons.wikimedia.org/wiki/Special:FilePath/" + img
+              document.getElementById("authorimginput").value = "https://commons.wikimedia.org/wiki/Special:FilePath/" + img;
+            } else {
+              document.getElementById("authorimginput").value = ""
+              authorimg.src = ""
+            }
           });
       });
   }

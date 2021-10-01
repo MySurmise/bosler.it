@@ -245,6 +245,7 @@ font-size:1.5rem;
   z-index: 1;
   transition: padding-bottom 0.5s ease-out;
   user-select: none;
+  min-height: 10rem;
 }
 
 
@@ -573,13 +574,13 @@ text-align: center
 }
 
 #authornameinput{
-  width: 60%; 
+  width: 100%; 
   margin-left:0; 
   margin-right:0
 }
 
 #languageinput{
-  width: 15%; 
+  width: 100%; 
   margin-left:0; 
   margin-right:3rem;
   text-align:center
@@ -657,3 +658,65 @@ text-align: center
   width: 7rem;
   cursor: pointer;
 }
+.dynamicinput{
+  position:relative;
+  white-space: nowrap;
+}
+.quotelabel, .inputlabel {
+  position: absolute;
+  left:3vw;
+  top:1vw;
+  pointer-events: none;
+  transition: 0.2s ease-out all;
+  color:gray;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+
+textarea:focus ~ .quotelabel,textarea:valid ~ .quotelabel, 
+input:focus ~ .inputlabel, input:valid ~ .inputlabel{
+  left:2vw;
+  top: 0vw;
+  font-size: 1vw;
+}
+
+
+
+.long {
+  width:60%;
+  margin-left:10%;
+}
+.short {
+  width:15%
+}
+
+.thosetwofuckers{
+    left:1.5vw;
+    top:1.5vw;
+}
+
+input:focus ~ .thosetwofuckers, input:valid ~ .thosetwofuckers {
+    left:1vw;
+  top: 1vw;
+  font-size: 1vw;
+}
+
+
+.onlytwo{
+  position: absolute;
+  font-size: 1vw;
+ bottom: 1vw;
+  left:20rem;
+  pointer-events: none;
+  transition: 0.2s ease-out all;
+  color:white;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+input:focus ~ .onlytwo, input:valid ~ .onlytwo {
+    color:gray;
+    left:1vw;
+  bottom: 1vw;
+  font-size: 1vw;
+}
+
