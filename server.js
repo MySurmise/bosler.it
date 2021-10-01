@@ -49,7 +49,7 @@ const insertIntoQuotes = (quoteObject) => {
 
   db.prepare(
     util.format("insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-      quoteObject.lang, quoteObject.text, quoteObject.authorname, quoteObject.authorimg, quoteObject.authorurl,
+     quoteObject.lang, quoteObject.text, quoteObject.authorname, quoteObject.authorimg, quoteObject.authorurl,
       quoteObject.originurl, quoteObject.originimg)
   ).run()
 }
@@ -60,6 +60,7 @@ const insertIntoQuoteQueue = (quoteObject) => { //WARNING! Queue!!
   queuedb = new dbm(path.join(__dirname, "files/Quotes/DB/queuedb.db"), {
     verbose: timelog,
   });
+	console.log(path.join(__dirname, "files/Quotes/DB/queuedb.db"))
   console.log(quoteObject)
   console.log(util.format(`insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) 
     values(
@@ -135,11 +136,34 @@ app.get("/quote/:quoteid([0-9]+)", (req, res) => {
 });
 
 app.get('/submit', (req, res) => {
-  if (crypto.createHash('sha256').update(req.query.commitpass).digest('base64') == "YaEktf/spITQaDGuMHjO0xWBkVIwS9ncEpZ1KvlvMKs=") {
-    insertIntoQuotes(req.query)
+  	newquote = {}
+	Object.keys(req.query).forEach((value) => {
+		console.log(req.query[value], req.query)
+		console.log(typeof( req.query[value]))
+
+		newquote[value] = req.query[value]
+			.replaceAll("'", "''")
+			.replaceAll("\n", " ")
+			.replaceAll("\r", " ")
+			.replaceAll("  ", " ")
+			.replaceAll("  ", " ")
+			.replaceAll("  ", " ")
+			.replaceAll("‘", "\'")
+			.replaceAll("“", '"')
+			.replaceAll("”", '"')
+			.replaceAll("„", '"')
+			.replaceAll("’", '"')			
+			.replaceAll("‚", '"')			
+			.replaceAll("`", '"')
+			.replaceAll("'", "\'")
+
+	})
+	if (crypto.createHash('sha256').update(req.query.commitpass).digest('base64') == "YaEktf/spITQaDGuMHjO0xWBkVIwS9ncEpZ1KvlvMKs=") {
+	
+    insertIntoQuotes(newquote)
     res.redirect("success")
   } else {
-    insertIntoQuoteQueue(req.query)
+    insertIntoQuoteQueue(newquote)
     res.redirect("enqueued")
   }
 })

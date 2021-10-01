@@ -8,6 +8,7 @@ originimginput = document.getElementById("originimginput");
 neworiginimg = document.getElementById("neworiginimg");
 submitquote = document.getElementById('submitQuote')
 authorurlinput = document.getElementById('authorurlinput')
+authorimginput = document.getElementById('authorimginput');
 clearbutton = document.getElementById('clear')
 commitpass = document.getElementById('commitpass')
 
@@ -27,7 +28,7 @@ submitquote.addEventListener("click", () => {
     text: quoteinput.value,
     lang: language.value,
     authorname: authornameinput.value,
-    authorimg: authorimg.value,
+    authorimg: authorimginput.value,
     authorurl: authorurlinput.value,
     originurl: originurlinput.value,
     originimg: originimginput.value,

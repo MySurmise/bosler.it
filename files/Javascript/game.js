@@ -23,10 +23,7 @@ function main() {
   lettercount = 0;
   inputfield = document.getElementById("inputfield");
   const input = document.getElementById("inputfield");
-  input.addEventListener("input", check);
   current = splitted_quote.shift();
-  document.getElementById("unfinishedcurrent").innerHTML = current + " ";
-  document.getElementById("unfinished").innerHTML = splitted_quote.join(" ");
   letterwrong = -1;
   inputfield.value = "";
   inputfield.focus();
@@ -43,19 +40,42 @@ function main() {
   started = false;
   round = 0;
   mistakes = 0;
+  input.addEventListener("input", check);
   inputfield.onpaste = (e) => e.preventDefault();
   textarea = document.getElementById("textarea")
   textarea.scrollTop = 0
+  rightfinished = document.getElementById("rightfinished")
+  rightcurrent =  document.getElementById("rightcurrent")
+  wrongcurrent = document.getElementById("wrongcurrent");
+  unfinishedcurrent = document.getElementById("unfinishedcurrent");
+  unfinished =  document.getElementById("unfinished");
+  finishedandcurrent = document.getElementById("finishedandcurrent"); 
   
+  unfinishedcurrent.innerHTML = current + " ";
+  unfinished.innerHTML = splitted_quote.join(" ");
+}
 
+function startedfunction() {
+	
+	checkheight = window.setInterval(function () {
 
-  checkwpm = window.setInterval(function () {
-  accuracy = acc.innerHTML
-    if (started) {
-      if (accuracy > 80) {
+		a = textarea.scrollHeight
+		b = textarea.offsetHeight
+		c = finishedandcurrent.offsetHeight
+		d = textlength
+		e = beginning = b/2
+		f = end = -60
+		textarea.scrollTop = c - e  
+		// console.log(((a - b) / (a - b - e - f)) * c - e * ((a - b) / (a - b - e - f)))
+		// console.log(a,b,c,d,e,f)
+
+	}, 150)
+
+	checkwpm = window.setInterval(function () {
+	accuracy = acc.innerHTML
+    if (accuracy > 80) {
         accuracyfield.style.backgroundColor =
           "hsla(" + (0.0125 * Math.pow((accuracy - 80), 3)) + ", 82.8%, 45.7%, 1)";
-        console.log("hsla(" + (0.0125 * Math.pow((accuracy - 80), 3)) + ", 82.8%, 45.7%, 1)")
       } else {
         accuracyfield.style.backgroundColor = "hsla(0, 82.8%, 45.7%, 1)";
       }
@@ -65,12 +85,8 @@ function main() {
       }
       time = (Date.now() - startTime) / 1000;
       speed.innerHTML = speednumber = parseInt(typedchars / (time / 12));
-    }
+   
   }, 500);
-
-  checkheight = window.setInterval(function () {
-    textarea.scrollTop = textarea.scrollHeight * (typedchars / textlength) - 50
-  }, 50)
 
 }
 
@@ -79,15 +95,19 @@ function coloring() {
 }
 
 function standardreturn() {
-  document.getElementById("rightfinished").innerHTML = finished.join(" ") + " ";
-  document.getElementById("rightcurrent").innerHTML = "";
-  document.getElementById("wrongcurrent").innerHTML = "";
-  document.getElementById("unfinishedcurrent").innerHTML = current + " ";
-  document.getElementById("unfinished").innerHTML = splitted_quote.join(" ");
+  rightfinished.innerHTML = finished.join(" ") + " ";
+  rightcurrent.innerHTML = "";
+  wrongcurrent.innerHTML = "";
+  unfinishedcurrent.innerHTML = current + " ";
+  unfinished.innerHTML = splitted_quote.join(" ");
 }
 
 function check() {
   round += 1
+  if (round == 5) {
+		  startedfunction()
+	console.log("started!")	
+  }
   inputfield.placeholder = "";
   inputfield = document.getElementById("inputfield");
   entry = inputfield.value;
@@ -126,17 +146,16 @@ function check() {
   } else {
     if (current.slice(0, lettercount) == entry.slice(0, lettercount)) {
       // words ok
-      console.log("passt");
-      document.getElementById("rightfinished").innerHTML =
+      rightfinished.innerHTML =
         finished.join(" ") + " ";
-      document.getElementById("rightcurrent").innerHTML = current.slice(
+      rightcurrent.innerHTML = current.slice(
         0,
         lettercount
       );
-      document.getElementById("wrongcurrent").innerHTML = "";
-      document.getElementById("unfinishedcurrent").innerHTML =
+      wrongcurrent.innerHTML = "";
+      unfinishedcurrent.innerHTML =
         current.slice(lettercount) + " ";
-      document.getElementById("unfinished").innerHTML =
+      unfinished.innerHTML =
         splitted_quote.join(" ");
       letterwrong = -1;
     } else {
@@ -156,28 +175,28 @@ function check() {
           return;
         }
       }
-      document.getElementById("rightfinished").innerHTML =
+      rightfinished.innerHTML =
         finished.join(" ") + " ";
-      document.getElementById("rightcurrent").innerHTML = current.slice(
+      rightcurrent.innerHTML = current.slice(
         0,
         letterwrong - 1
       );
       if (lettercount < current.length) {
-        document.getElementById("wrongcurrent").innerHTML = current.slice(
+       wrongcurrent.innerHTML = current.slice(
           letterwrong - 1,
           lettercount
         );
-        document.getElementById("unfinishedcurrent").innerHTML =
+        unfinishedcurrent.innerHTML =
           current.slice(lettercount) + " ";
-        document.getElementById("unfinished").innerHTML =
+        unfinished.innerHTML =
           splitted_quote.join(" ");
       } else {
-        document.getElementById("wrongcurrent").innerHTML = current
+        wrongcurrent.innerHTML = current
           .concat(" " + splitted_quote.join(" "))
           .slice(letterwrong - 1, lettercount);
-        document.getElementById("unfinishedcurrent").innerHTML =
+        unfinishedcurrent.innerHTML =
           current.slice(lettercount);
-        document.getElementById("unfinished").innerHTML = current
+        unfinished.innerHTML = current
           .concat(" " + splitted_quote.join(" "))
           .slice(lettercount);
       }
