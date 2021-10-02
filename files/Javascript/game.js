@@ -65,7 +65,7 @@ function startedfunction() {
 		d = textlength
 		e = beginning = b/2
 		f = end = -60
-		textarea.scrollTop = c - e  
+		textarea.scrollTop = c - e  + 8
 		// console.log(((a - b) / (a - b - e - f)) * c - e * ((a - b) / (a - b - e - f)))
 		// console.log(a,b,c,d,e,f)
 
