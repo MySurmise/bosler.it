@@ -180,7 +180,7 @@ app.get('/enqueued', (req, res) => {
 app.get('/amazingsearch', (req, res) => {
   console.log(req.query)
 
-  const pythonProcess = spawn('python', [__dirname + "/files/Javascript/amazonsearcher.py"].concat(Object.values(req.query)));
+  const pythonProcess = spawn('python3' + __dirname + "/files/Javascript/amazonsearcher.py " + req.query.lang + req.query.q, { shell: true })
 
   console.log([__dirname + "/files/Javascript/amazonsearcher.py"].concat(Object.values(req.query)))
   pythonProcess.stdout.pipe(process.stdout)
