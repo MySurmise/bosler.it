@@ -182,7 +182,7 @@ app.get('/amazingsearch', (req, res) => {
 
   const pythonProcess = spawn('python', [__dirname + "/files/Javascript/amazonsearcher.py"].concat(Object.values(req.query)));
 
-  console.log()
+  console.log([__dirname + "/files/Javascript/amazonsearcher.py"].concat(Object.values(req.query)))
   pythonProcess.stdout.pipe(process.stdout)
   pythonProcess.stdout.on('data', (data) => {
     console.log(data.toString().replaceAll("'", '"'))
