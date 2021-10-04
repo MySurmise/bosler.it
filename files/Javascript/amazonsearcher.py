@@ -31,7 +31,7 @@ except:
     page = requests.get("https://www.amazon.com/s?k=" + " ".join(sys.argv[2:]), headers=HEADERS)
 results = {}
 soup = BeautifulSoup(page.content, features="html.parser")
-print(soup.prettify())
+#print(soup.prettify())
 counter = 1
 for img in soup.find_all("img", class_="s-image"):
     if (counter > 10):
