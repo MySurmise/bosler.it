@@ -2,3 +2,4 @@ node_modules
 *.db
 .well-known
 *db-journal
+nohup.out
