@@ -12,6 +12,7 @@ const https = require("https")
 const os = require("os")
 const crypto = require("crypto");
 const { send } = require("process");
+const spawn = require("child_process").spawn;
 
 const app = express();
 const timelog = (objectToLog) => {
@@ -49,7 +50,7 @@ const insertIntoQuotes = (quoteObject) => {
 
   db.prepare(
     util.format("insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) values ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-     quoteObject.lang, quoteObject.text, quoteObject.authorname, quoteObject.authorimg, quoteObject.authorurl,
+      quoteObject.lang, quoteObject.text, quoteObject.authorname, quoteObject.authorimg, quoteObject.authorurl,
       quoteObject.originurl, quoteObject.originimg)
   ).run()
 }
@@ -60,7 +61,7 @@ const insertIntoQuoteQueue = (quoteObject) => { //WARNING! Queue!!
   queuedb = new dbm(path.join(__dirname, "files/Quotes/DB/queuedb.db"), {
     verbose: timelog,
   });
-	console.log(path.join(__dirname, "files/Quotes/DB/queuedb.db"))
+  console.log(path.join(__dirname, "files/Quotes/DB/queuedb.db"))
   console.log(quoteObject)
   console.log(util.format(`insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) 
     values(
@@ -136,30 +137,30 @@ app.get("/quote/:quoteid([0-9]+)", (req, res) => {
 });
 
 app.get('/submit', (req, res) => {
-  	newquote = {}
-	Object.keys(req.query).forEach((value) => {
-		console.log(req.query[value], req.query)
-		console.log(typeof( req.query[value]))
+  newquote = {}
+  Object.keys(req.query).forEach((value) => {
+    console.log(req.query[value], req.query)
+    console.log(typeof (req.query[value]))
 
-		newquote[value] = req.query[value]
-			.replaceAll("'", "''")
-			.replaceAll("\n", " ")
-			.replaceAll("\r", " ")
-			.replaceAll("  ", " ")
-			.replaceAll("  ", " ")
-			.replaceAll("  ", " ")
-			.replaceAll("‘", "\'")
-			.replaceAll("“", '"')
-			.replaceAll("”", '"')
-			.replaceAll("„", '"')
-			.replaceAll("’", '"')			
-			.replaceAll("‚", '"')			
-			.replaceAll("`", '"')
-			.replaceAll("'", "\'")
+    newquote[value] = req.query[value]
+      .replaceAll("'", "''")
+      .replaceAll("\n", " ")
+      .replaceAll("\r", " ")
+      .replaceAll("  ", " ")
+      .replaceAll("  ", " ")
+      .replaceAll("  ", " ")
+      .replaceAll("‘", "\'")
+      .replaceAll("“", '"')
+      .replaceAll("”", '"')
+      .replaceAll("„", '"')
+      .replaceAll("’", '"')
+      .replaceAll("‚", '"')
+      .replaceAll("`", '"')
+      .replaceAll("'", "\'")
 
-	})
-	if (crypto.createHash('sha256').update(req.query.commitpass).digest('base64') == "YaEktf/spITQaDGuMHjO0xWBkVIwS9ncEpZ1KvlvMKs=") {
-	
+  })
+  if (crypto.createHash('sha256').update(req.query.commitpass).digest('base64') == "YaEktf/spITQaDGuMHjO0xWBkVIwS9ncEpZ1KvlvMKs=") {
+
     insertIntoQuotes(newquote)
     res.redirect("success")
   } else {
@@ -169,14 +170,27 @@ app.get('/submit', (req, res) => {
 })
 
 app.get('/success', (req, res) => {
-    res.render("pug/success")
+  res.render("pug/success")
 })
 
 app.get('/enqueued', (req, res) => {
-    res.render("pug/enqueued")
+  res.render("pug/enqueued")
 })
 
+app.get('/amazingsearch', (req, res) => {
+  console.log(req.query)
 
+  const pythonProcess = spawn('python', [__dirname + "/files/Javascript/amazonsearcher.py"].concat(Object.values(req.query)));
+
+  console.log()
+  pythonProcess.stdout.pipe(process.stdout)
+  pythonProcess.stdout.on('data', (data) => {
+    console.log(data.toString().replaceAll("'", '"'))
+    responsejson = JSON.parse(data.toString().replaceAll("'", '"'))
+    res.json(responsejson)
+    pythonProcess.kill('SIGINT')
+  })
+})
 
 
 
