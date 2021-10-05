@@ -6,11 +6,62 @@ authornameinput = document.getElementById("authornameinput");
 originurlinput = document.getElementById("originurlinput");
 originimginput = document.getElementById("originimginput");
 neworiginimg = document.getElementById("neworiginimg");
+neworiginlink = document.getElementById("neworiginlinklink")
 submitquote = document.getElementById('submitQuote')
 authorurlinput = document.getElementById('authorurlinput')
 authorimginput = document.getElementById('authorimginput');
 clearbutton = document.getElementById('clear')
 commitpass = document.getElementById('commitpass')
+search = document.getElementById('search')
+searchengine = document.getElementById('searchengine')
+nextlink = document.getElementById('nextlink')
+lastlink = document.getElementById('lastlink')
+
+nextlink.addEventListener("click", () => {
+  if (currentResult < numberOfResults) {
+    currentResult += 1
+  } else {
+    currentResult = 1
+  }
+  neworiginimg.src = amazonResults[currentResult].img
+  neworiginlink.href = amazonResults[currentResult].url
+  originurlinput.value = amazonResults[currentResult].url
+  originimginput.value = amazonResults[currentResult].img
+})
+
+lastlink.addEventListener("click", () => {
+  if (currentResult > 1) {
+    currentResult -= 1
+  } else {
+    currentResult = numberOfResults
+  }
+  neworiginimg.src = amazonResults[currentResult].img
+  neworiginlink.href = amazonResults[currentResult].url
+  originurlinput.value = amazonResults[currentResult].url
+  originimginput.value = amazonResults[currentResult].img
+})
+
+search.addEventListener("keypress", (e) => {
+  if (e.key == 'Enter') {
+    switch (searchengine.value) {
+      case "Amazon":
+        fetch("/amazingsearch?lang=" + language.value + "&q=" + search.value)
+          .then(response => response.json())
+          .then(resp => {
+            amazonResults = resp;
+            currentResult = 1
+            numberOfResults = Math.max(...Object.keys(amazonResults))
+            neworiginimg.src = resp[1].img
+            neworiginlink.href = resp[1].url
+            originurlinput.value = resp[1].url
+            originimginput.value = resp[1].img
+            console.log(resp)
+            nextlink.src = "Images/next.svg"
+            lastlink.src = "Images/next.svg"
+          })
+    }
+  }
+})
 
 clearbutton.addEventListener("click", () => {
   quoteinput.value = ""
@@ -20,7 +71,7 @@ clearbutton.addEventListener("click", () => {
   authorurlinput.value = ""
   originurlinput.value = ""
   originimginput.value = ""
-  
+  search.value = ""
 })
 
 submitquote.addEventListener("click", () => {
@@ -83,7 +134,7 @@ authornameinput.addEventListener("focusout", (event) => {
   if (typeof (title) !== "undefined") {
     authornameinput.value = title
   }
-  }
+}
 )
 
 
@@ -176,10 +227,14 @@ const extractImg = (url) => {
 };
 
 function checklanguage() {
-  if (language.value.length > 2 || language.value.length == 1) {
+  if (language.value.length > 2 || language.value.length <= 1) {
     language.style.color = "red";
+    authornameinput.disabled = true
+    search.disabled = true
   } else {
     language.style.color = "black";
+    authornameinput.disabled = false
+    search.disabled = false
   }
 }
 
@@ -188,4 +243,5 @@ function checkauthor(event) { }
 
 window.onload = function () {
   document.getElementById('commitpass').value = "";
+  checklanguage()
 };
