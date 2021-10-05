@@ -72,6 +72,7 @@ clearbutton.addEventListener("click", () => {
   originurlinput.value = ""
   originimginput.value = ""
   search.value = ""
+  checklanguage()
 })
 
 submitquote.addEventListener("click", () => {
@@ -122,6 +123,7 @@ quoteinput.addEventListener("input", (event) => {
           console.log(language.lang, language.prob);
         });
         language.value = data[0].lang;
+        checklanguage()
       })
       .catch((err) => {
         console.log("Error", err);
