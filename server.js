@@ -35,8 +35,8 @@ const db = new dbm(path.join(__dirname, "files/Quotes/DB/Quotes.db"), {
 });
 
 const insertIntoQuotes = (quoteObject) => {
-  console.log(quoteObject)
-  console.log(util.format(`insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) 
+  timelog(quoteObject)
+  timelog(util.format(`insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg)
     values(
     '%s',   // lang
     '%s',   // text
@@ -61,9 +61,9 @@ const insertIntoQuoteQueue = (quoteObject) => { //WARNING! Queue!!
   queuedb = new dbm(path.join(__dirname, "files/Quotes/DB/queuedb.db"), {
     verbose: timelog,
   });
-  console.log(path.join(__dirname, "files/Quotes/DB/queuedb.db"))
-  console.log(quoteObject)
-  console.log(util.format(`insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg) 
+  timelog(path.join(__dirname, "files/Quotes/DB/queuedb.db"))
+  timelog(quoteObject)
+  timelog(util.format(`insert into Quotes (lang, text, authorname, authorimg, authorurl, originurl, originimg)
     values(
     '%s',   // lang
     '%s',   // text
@@ -91,19 +91,19 @@ app.get(["/", "/newsingle"], (req, res) => {
 });
 
 app.get("/addnew", (req, res) => {
-  console.log("Addnew");
+  timelog("Addnew");
   authors = db.prepare("select distinct authorname from quotes").all();
   authorArray = [];
   authors.forEach((entry) => {
     authorArray.push(entry.authorname);
   });
   searchengines = ["Amazon"]
-  console.log(authorArray);
+  timelog(authorArray);
   res.render("pug/addnew.pug", { authorArray, searchengines });
 });
 
 app.get("/search", (req, res) => {
-  console.log(req.query.query);
+  timelog(req.query.query);
   res.json(langdetect.detect(req.query.query));
 });
 
@@ -140,8 +140,8 @@ app.get("/quote/:quoteid([0-9]+)", (req, res) => {
 app.get('/submit', (req, res) => {
   newquote = {}
   Object.keys(req.query).forEach((value) => {
-    console.log(req.query[value], req.query)
-    console.log(typeof (req.query[value]))
+    timelog(req.query[value], req.query)
+    timelog(typeof (req.query[value]))
 
     newquote[value] = req.query[value]
       .replaceAll("'", "''")
@@ -179,19 +179,63 @@ app.get('/enqueued', (req, res) => {
 })
 
 app.get('/amazingsearch', (req, res) => {
-  console.log(req.query)
+  timelog(req.query)
 
-  const pythonProcess = spawn('python3 ' + __dirname + "/files/Javascript/amazonsearcher.py " + req.query.lang + " "  + req.query.q, { shell: true })
+  const pythonProcess = spawn('python3 ' + __dirname + "/files/Javascript/amazonsearcher.py " + req.query.lang + " " + req.query.q, { shell: true })
 
-  console.log(('python3 ' + __dirname + "/files/Javascript/amazonsearcher.py " + req.query.lang + " " + req.query.q))
+  timelog(('python3 ' + __dirname + "/files/Javascript/amazonsearcher.py " + req.query.lang + " " + req.query.q))
   pythonProcess.stdout.pipe(process.stdout)
   pythonProcess.stderr.pipe(process.stderr);
   pythonProcess.stdout.on('data', (data) => {
-    console.log(data.toString().replaceAll("'", '"'))
+    timelog(data.toString().replaceAll("'", '"'))
     responsejson = JSON.parse(data.toString().replaceAll("'", '"'))
     res.json(responsejson)
     pythonProcess.kill('SIGINT')
   })
+})
+
+app.get('/newquotes', (req, res) => {
+  if (typeof(queuedb) == "undefined") {
+    queuedb = new dbm(path.join(__dirname, "files/Quotes/DB/queuedb.db"), {
+      verbose: timelog,
+    });
+  } 
+  if (req.query.key) {
+    fs.readFile("files/key.txt", 'utf8', (err, data) => {
+      key = data.toString()
+      if (req.query.key == key) {
+        if (req.query.quoteid) {
+          timelog(quoteData)
+          if (req.query.approve == "true") {
+            try{
+            delete quoteData.quoteid
+            } finally {
+              timelog("Deleted")
+            }
+              insertIntoQuotes(quoteData)
+            queuedb.prepare("delete from Quotes where quoteid=" + req.query.quoteid ).run();
+            timelog("approved", req.query.quoteid)
+            res.redirect("/newquotes?key=" + key)
+            return
+          } else {
+            queuedb.prepare("delete from Quotes where quoteid=" + req.query.quoteid).run();
+            timelog("not approved", req.query.quoteid)
+            res.redirect("/newquotes?key=" + key)
+            return
+          }
+        }
+
+        quoteData = queuedb.prepare("select * from Quotes").get();
+        res.render("pug/newquotesproof", quoteData)
+      } else {
+        attempted = true
+        res.render("pug/newquotes", { attempted })
+      }
+    })
+  } else {
+    attempted = false
+    res.render("pug/newquotes", { attempted })
+  }
 })
 
 

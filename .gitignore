@@ -3,3 +3,4 @@ node_modules
 .well-known
 *db-journal
 nohup.out
+key.txt

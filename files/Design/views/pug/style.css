@@ -744,3 +744,25 @@ input:valid ~ .onlytwo {
   filter: drop-shadow(1rem 1rem 1rem #000000);
   text-shadow: 0.2px 0 currentColor;
 }
+
+#ok {
+  background-color: green;
+  width:10rem;
+  height: 10rem;
+  border: 3px solid black;
+  border-radius: 5rem;
+  position: absolute;
+  bottom: -15rem;
+  right:5rem;
+}
+
+#notok {
+  background-color: red;
+  width:10rem;
+  height: 10rem;
+  border: 3px solid black;
+  border-radius: 5rem;
+  position: absolute;
+  bottom: -15rem;
+  left:5rem;
+}
