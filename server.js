@@ -181,9 +181,13 @@ app.get('/enqueued', (req, res) => {
 app.get('/amazingsearch', (req, res) => {
   console.log(req.query)
 
+<<<<<<< Updated upstream
   const pythonProcess = spawn('python3 ' + __dirname + "/files/Javascript/amazonsearcher.py " + req.query.lang + req.query.q, { shell: true })
+=======
+  const pythonProcess = spawn('python3 ' + __dirname + "/files/Javascript/amazonsearcher.py " + req.query.lang + " "  + req.query.q, { shell: true })
+>>>>>>> Stashed changes
 
-  console.log([__dirname + "/files/Javascript/amazonsearcher.py"].concat(Object.values(req.query)))
+  console.log(('python3 ' + __dirname + "/files/Javascript/amazonsearcher.py " + req.query.lang + " " + req.query.q))
   pythonProcess.stdout.pipe(process.stdout)
   pythonProcess.stderr.pipe(process.stderr);
   pythonProcess.stdout.on('data', (data) => {
