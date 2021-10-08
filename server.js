@@ -293,12 +293,18 @@ app.post('/pdfupload', function (req, res) {
   fs.rename(__dirname + '/files/pdf/pdf-documents/.count' + count, __dirname + '/files/pdf/pdf-documents/.count' + (count + 1), (err) => { if (err) console.log(err) })
   if (directory.length > 10) {
     output = fs.readdirSync(__dirname + '/files/pdf/Output/')
+    try {
+      output.splice(output.indexOf(".gitkeep"), 1)
+    } catch { }
     output.sort(function (a, b) {
       return parseInt(a) - parseInt(b);
     });
     output.slice(0, -5).forEach((file) => {
       fs.unlink(__dirname + '/files/pdf/Output/' + file, (err) => { if (err) console.log(err) })
     })
+    try {
+      directory.splice(directory.indexOf(".gitkeep"), 1)
+    } catch { }
     directory.sort(function (a, b) {
       return parseInt(a) - parseInt(b);
     });
