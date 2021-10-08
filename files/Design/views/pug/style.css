@@ -768,8 +768,7 @@ input:valid ~ .onlytwo {
 }
 
 #pdfframe {
-  height: 50rem;
-
+  height: 80vh;
 }
 
 
