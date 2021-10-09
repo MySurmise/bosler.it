@@ -720,8 +720,6 @@ input:valid ~ .onlytwo {
   max-width: 20rem;
   border-radius: 1rem;
   filter: drop-shadow(0.2em 0.2em 0.5em #00000071);
-    
-
 }
 
 #lastlink {
@@ -747,28 +745,51 @@ input:valid ~ .onlytwo {
 
 #ok {
   background-color: green;
-  width:10rem;
+  width: 10rem;
   height: 10rem;
   border: 3px solid black;
   border-radius: 5rem;
   position: absolute;
   bottom: -15rem;
-  right:5rem;
+  right: 5rem;
 }
 
 #notok {
   background-color: red;
-  width:10rem;
+  width: 10rem;
   height: 10rem;
   border: 3px solid black;
   border-radius: 5rem;
   position: absolute;
   bottom: -15rem;
-  left:5rem;
+  left: 5rem;
 }
 
 #pdfframe {
   height: 80vh;
+  display: inline;
 }
 
+#pdfinput {
+  position: absolute;
+  top: 10rem;
+  right: 10rem;
+  z-index: 9;
+  border: 1px solid #d3d3d3;
+  text-align: center;
+  width: 25vw;
+  height: 2vh;
+  margin: 0;
+}
 
+#outercircle {
+  z-index: 10;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 150px;
+  width: 150px;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: move;
+}

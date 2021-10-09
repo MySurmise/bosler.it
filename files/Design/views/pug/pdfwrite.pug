@@ -2,6 +2,9 @@ extends layouts/main.pug
 
 block content 
     iframe(src="/last")#pdfframe
-           
+    input.newquoteinput#pdfinput(placeholder="Type here...")
+    
+    #outercircle 
+        #innercircle
     script 
         include ../../../Javascript/pdfwrite.js  

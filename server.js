@@ -303,7 +303,7 @@ app.post('/pdfupload', function (req, res) {
       fs.unlink(__dirname + '/files/pdf/Output/' + file, (err) => { if (err) console.log(err) })
     })
     try {
-      directory.splice(directory.indexOf(".gitkeep"), 1)
+      directory.splice(output.indexOf(".gitkeep"), 1)
     } catch { }
     directory.sort(function (a, b) {
       return parseInt(a) - parseInt(b);
@@ -364,7 +364,7 @@ if (!os.release().endsWith('WSL2')) {
 } else {
   const port = 5000
   app.listen(port, () => {
-    timelog(`listening at http://localhost:${port}`);
+    timelog(`listening at http://localhost:${port}/pdf`);
   });
 }
 
