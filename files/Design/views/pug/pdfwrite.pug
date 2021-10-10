@@ -2,8 +2,9 @@ extends layouts/main.pug
 
 block content 
     iframe(src="/last")#pdfframe
-    input.newquoteinput#pdfinput(placeholder="Type here...")
-    
+    #pdfinput
+        input#innerpdfinput.newquoteinput(placeholder="Type here...")
+        textarea#nexttext.newquoteinput(readonly="yes")
     #outercircle 
         #innercircle
     script 

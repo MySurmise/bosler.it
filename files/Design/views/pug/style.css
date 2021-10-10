@@ -771,15 +771,35 @@ input:valid ~ .onlytwo {
 }
 
 #pdfinput {
+  background-color: bisque;
+  font-size: 1.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  border: none;
+  border-radius: 5px;
+  border-top: 0px;
+  outline: none;
+  z-index: 0;
+  transition: height 0.5s ease-out;
+  overflow: hidden;
+  resize: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
   position: absolute;
   top: 10rem;
   right: 10rem;
   z-index: 9;
   border: 1px solid #d3d3d3;
-  text-align: center;
-  width: 25vw;
-  height: 2vh;
+  width: 15vw;
+  height: 4rem;
   margin: 0;
+  padding-right:20vw;
+  padding-top: 2rem;
+  padding-bottom:2rem;
 }
 
 #outercircle {
@@ -792,4 +812,40 @@ input:valid ~ .onlytwo {
   border-radius: 10px;
   background-color: transparent;
   cursor: move;
+}
+
+#innerpdfinput{
+  background-color: transparent;
+  margin:0;
+  text-align: right;
+  position:absolute;
+  right: 50%;
+  top: 2vh;
+  padding: 0;
+  background-color:rgba(0, 0, 0, 0.2);
+  height:4rem;
+}
+
+#nexttext {
+  position: absolute;
+  left: 50%;
+  top: 2vh;
+  margin: 0;
+  padding: 0;
+  padding-top: 1rem;
+    text-align: left;
+    cursor: default;
+   height:auto;
+   width:50%;
+   line-height: 1.5;
+}
+
+
+@keyframes fadeIn {
+  from {
+  	opacity: 0;
+  }
+  to {
+ 	opacity: 1;
+  }
 }
