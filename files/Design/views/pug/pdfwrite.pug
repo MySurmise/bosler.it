@@ -1,11 +1,14 @@
 extends layouts/main.pug
 
 block content 
-    iframe(src="/last")#pdfframe
+    #closetopbar
+    #pdfcontent
+        iframe(src="/last")#pdfframe.scale15
+        #settings
+            input(type="range" min="5" max="30" value="10" )#pdfscale
+
     #pdfinput
         input#innerpdfinput.newquoteinput(placeholder="Type here...")
         textarea#nexttext.newquoteinput(readonly="yes")
-    #outercircle 
-        #innercircle
     script 
         include ../../../Javascript/pdfwrite.js  

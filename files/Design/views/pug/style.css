@@ -765,41 +765,28 @@ input:valid ~ .onlytwo {
   left: 5rem;
 }
 
+#pdfcontent {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
 #pdfframe {
+  max-height: 100%;
+  max-width: 100%;
   height: 80vh;
-  display: inline;
+  width: 80vw;
+  display: inline-table;
 }
 
 #pdfinput {
-  background-color: bisque;
-  font-size: 1.5rem;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  border: none;
-  border-radius: 5px;
-  border-top: 0px;
-  outline: none;
-  z-index: 0;
-  transition: height 0.5s ease-out;
-  overflow: hidden;
-  resize: none;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-
-  position: absolute;
-  top: 10rem;
-  right: 10rem;
-  z-index: 9;
-  border: 1px solid #d3d3d3;
-  width: 15vw;
+  position: fixed;
   height: 4rem;
-  margin: 0;
-  padding-right:20vw;
-  padding-top: 2rem;
-  padding-bottom:2rem;
+  width: 505px;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #outercircle {
@@ -814,38 +801,377 @@ input:valid ~ .onlytwo {
   cursor: move;
 }
 
-#innerpdfinput{
+#innerpdfinput {
   background-color: transparent;
-  margin:0;
+  margin: 0;
   text-align: right;
-  position:absolute;
+  position: absolute;
   right: 50%;
-  top: 2vh;
   padding: 0;
-  background-color:rgba(0, 0, 0, 0.2);
-  height:4rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  color:bisque;
+  height: 4rem;
+  width: 50%;
+  border-radius: 5px 0px 0px 5px;
 }
 
 #nexttext {
   position: absolute;
   left: 50%;
-  top: 2vh;
   margin: 0;
   padding: 0;
-  padding-top: 1rem;
-    text-align: left;
-    cursor: default;
-   height:auto;
-   width:50%;
-   line-height: 1.5;
+  text-align: left;
+  cursor: default;
+  height: 3.09rem;
+  width: 50%;
+  line-height: 1.5;
+  border-radius: 0px 5px 5px 0px;
+   opacity: 0.5;
+   padding-top:0.91rem;
+}
+
+#settings {
+  position: fixed;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  height: 3rem;
+  bottom:0px;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: bisque;
+  opacity:1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0px 0px 5px 5px;
+}
+
+#pdfscale::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 24px;
+  border: 0;
+  background: url('/Images/Zoom.png');
+  cursor: pointer;
+  width: 100%;
+}
+
+#pdfscale::-moz-range-thumb {
+  width: 100%;
+  height: 25px;
+  border: 0;
+  background: url('/Images/Zoom.png');
+  cursor: pointer;
+}
+
+#pdfscale {
+  width: 100%;
+  height: 10px;
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.scale05 {
+  zoom: 0.5;
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: center top;
+  -o-transform: scale(0.5);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(0.5);
+  -webkit-transform-origin: center top;
+}
+
+.scale06 {
+  zoom: 0.6;
+  -moz-transform: scale(0.6);
+  -moz-transform-origin: center top;
+  -o-transform: scale(0.6);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(0.6);
+  -webkit-transform-origin: center top;
+}
+
+.scale07 {
+  zoom: 0.7;
+  -moz-transform: scale(0.7);
+  -moz-transform-origin: center top;
+  -o-transform: scale(0.7);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(0.7);
+  -webkit-transform-origin: center top;
+}
+
+.scale08 {
+  zoom: 0.8;
+  -moz-transform: scale(0.8);
+  -moz-transform-origin: center top;
+  -o-transform: scale(0.8);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(0.8);
+  -webkit-transform-origin: center top;
+}
+
+.scale09 {
+  zoom: 0.9;
+  -moz-transform: scale(0.9);
+  -moz-transform-origin: center top;
+  -o-transform: scale(0.9);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(0.9);
+  -webkit-transform-origin: center top;
+}
+
+.scale10 {
+  zoom: 1;
+  -moz-transform: scale(1);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1);
+  -webkit-transform-origin: center top;
+}
+
+.scale11 {
+  zoom: 1.1;
+  -moz-transform: scale(1.1);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1.1);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1.1);
+  -webkit-transform-origin: center top;
+}
+
+.scale12 {
+  zoom: 1.2;
+  -moz-transform: scale(1.2);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1.2);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1.2);
+  -webkit-transform-origin: center top;
+}
+
+.scale13 {
+  zoom: 1.3;
+  -moz-transform: scale(1.3);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1.3);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1.3);
+  -webkit-transform-origin: center top;
+}
+
+.scale14 {
+  zoom: 1.4;
+  -moz-transform: scale(1.4);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1.4);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1.4);
+  -webkit-transform-origin: center top;
+}
+
+.scale15 {
+  zoom: 1.5;
+  -moz-transform: scale(1.5);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1.5);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1.5);
+  -webkit-transform-origin: center top;
+}
+
+.scale16 {
+  zoom: 1.6;
+  -moz-transform: scale(1.6);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1.6);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1.6);
+  -webkit-transform-origin: center top;
+}
+
+.scale17 {
+  zoom: 1.7;
+  -moz-transform: scale(1.7);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1.7);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1.7);
+  -webkit-transform-origin: center top;
+}
+
+.scale18 {
+  zoom: 1.8;
+  -moz-transform: scale(1.8);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1.8);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1.8);
+  -webkit-transform-origin: center top;
+}
+
+.scale19 {
+  zoom: 1.9;
+  -moz-transform: scale(1.9);
+  -moz-transform-origin: center top;
+  -o-transform: scale(1.9);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(1.9);
+  -webkit-transform-origin: center top;
+}
+
+.scale20 {
+  zoom: 2;
+  -moz-transform: scale(2);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2);
+  -webkit-transform-origin: center top;
+}
+
+.scale21 {
+  zoom: 2.1;
+  -moz-transform: scale(2.1);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2.1);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2.1);
+  -webkit-transform-origin: center top;
+}
+
+.scale22 {
+  zoom: 2.2;
+  -moz-transform: scale(2.2);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2.2);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2.2);
+  -webkit-transform-origin: center top;
+}
+
+.scale23 {
+  zoom: 2.3;
+  -moz-transform: scale(2.3);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2.3);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2.3);
+  -webkit-transform-origin: center top;
+}
+
+.scale24 {
+  zoom: 2.4;
+  -moz-transform: scale(2.4);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2.4);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2.4);
+  -webkit-transform-origin: center top;
+}
+
+.scale25 {
+  zoom: 2.5;
+  -moz-transform: scale(2.5);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2.5);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2.5);
+  -webkit-transform-origin: center top;
+}
+
+.scale26 {
+  zoom: 2.6;
+  -moz-transform: scale(2.6);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2.6);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2.6);
+  -webkit-transform-origin: center top;
+}
+
+.scale27 {
+  zoom: 2.7;
+  -moz-transform: scale(2.7);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2.7);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2.7);
+  -webkit-transform-origin: center top;
+}
+
+.scale28 {
+  zoom: 2.8;
+  -moz-transform: scale(2.8);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2.8);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2.8);
+  -webkit-transform-origin: center top;
+}
+
+.scale29 {
+  zoom: 2.9;
+  -moz-transform: scale(2.9);
+  -moz-transform-origin: center top;
+  -o-transform: scale(2.9);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(2.9);
+  -webkit-transform-origin: center top;
+}
+
+.scale30 {
+  zoom: 3;
+  -moz-transform: scale(3);
+  -moz-transform-origin: center top;
+  -o-transform: scale(3);
+  -o-transform-origin: center top;
+  -webkit-transform: scale(3);
+  -webkit-transform-origin: center top;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  #scaled-frame {
+    zoom: 1;
+  }
+}
+
 @keyframes fadeIn {
   from {
-  	opacity: 0;
+    opacity: 0;
   }
   to {
- 	opacity: 1;
+    opacity: 1;
   }
 }
