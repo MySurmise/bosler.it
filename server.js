@@ -109,22 +109,11 @@ const insertIntoQuoteQueue = (quoteObject) => { //WARNING! Queue!!
 
 
 var quoteids = new Set();
-
-<<<<<<< HEAD
-app.get(["/"], (req, res) => {
-	//	res.render("pug/main.pug")
-	res.redirect("/newsingle")
-	// temporary, just so that the server runs.
-})
-
-app.get(["/newsingle"], (req, res) => {
-=======
 app.get("/", (req, res) => {
   res.render("pug/layouts/main.pug")
 });
 
 app.get("/newsingle", (req, res) => {
->>>>>>> 8757c219e31743ff97753a58010d49b83c8451b9
   randomQuote = db.prepare("SELECT quoteid FROM Quotes ORDER BY RANDOM() LIMIT 1").get();
   res.redirect("/quote/" + randomQuote.quoteid);
 });
