@@ -85,7 +85,13 @@ const insertIntoQuoteQueue = (quoteObject) => { //WARNING! Queue!!
 
 var quoteids = new Set();
 
-app.get(["/", "/newsingle"], (req, res) => {
+app.get(["/"], (req, res) => {
+	//	res.render("pug/main.pug")
+	res.redirect("/newsingle")
+	// temporary, just so that the server runs.
+})
+
+app.get(["/newsingle"], (req, res) => {
   randomQuote = db.prepare("SELECT quoteid FROM Quotes ORDER BY RANDOM() LIMIT 1").get();
   res.redirect("/quote/" + randomQuote.quoteid);
 });
@@ -264,11 +270,11 @@ if (!os.release().endsWith('WSL2')) {
   });
 
   https.createServer({
-    key: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/privkey1.pem"),
-    cert: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/cert1.pem"),
-    ca: fs.readFileSync("/etc/letsencrypt/archive/quote.ddns.net/chain1.pem")
+    key: fs.readFileSync("/etc/letsencrypt/archive/bosler.it/privkey1.pem"),
+    cert: fs.readFileSync("/etc/letsencrypt/archive/bosler.it/cert1.pem"),
+    ca: fs.readFileSync("/etc/letsencrypt/archive/bosler.it/chain1.pem")
   }, app).listen(443);
-  timelog(`listening at https://quote.ddns.net:${443}`);
+  timelog(`listening at https://bosler.it:${443}`);
 
 } else {
   const port = 5000
