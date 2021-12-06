@@ -46,14 +46,14 @@ input:focus {
 }
 
 .logo {
-  padding: 1vh;
-  height: 8vh;
+  padding: 0.5vw;
+  height: 4vw;
   border: 2px solid rgb(219, 177, 61);
   border-radius: 10px 0px 0px 10px;
 }
 
 .navbar {
-  height: 10vh;
+  height: 5vw;
   border: 2px solid rgb(219, 177, 61);
   text-align: center;
   padding-right: auto;
@@ -71,10 +71,10 @@ input:focus {
 
 .titlename {
   text-align: center;
-  letter-spacing: 0.4vh;
-  font-size: 5vh;
-  margin-bottom: 0.6vh;
-  margin-left: 2vh;
+  letter-spacing: 0.2vw;
+  font-size: 2.5vw;
+  margin-bottom: 0.3vw;
+  margin-left: 1vw;
 }
 
 .wrapper {
@@ -95,41 +95,41 @@ input:focus {
 }
 
 .navlinks {
-  margin-left: 2vh;
+  margin-left: 1vw;
   width: 50%;
   font-family: "DejaVu Sans Mono";
-  letter-spacing: 0.1vh;
+  letter-spacing: 0.05vw;
   text-align: center;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
   justify-content: end;
-  font-size: 3vh;
-  margin-right: 4vh;
+  font-size: 1.5vw;
+  margin-right: 2vw;
 }
 .navlinkitem {
-  padding-left: 2vh;
+  padding-left: 1vw;
   padding-right: 1em;
   white-space: nowrap;
 }
 
 #gamingfield {
-  margin-top: 10vh;
+  margin-top: 5vw;
 }
 
 #stats {
   position: relative;
   width: 43%;
-  height: 8vh;
+  height: 4vw;
   background-color: bisque;
-  font-size: 3vh;
-  padding: 3vh;
+  font-size: 1.5vw;
+  padding: 1.5vw;
   margin: 0;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   border: none;
-  border-radius: 2vh 2vh 0px 0px;
+  border-radius: 1vw 1vw 0px 0px;
   border-top: 0px;
   outline: none;
   z-index: 0;
@@ -137,9 +137,9 @@ input:focus {
 
 #progressbar {
   position: absolute;
-  height: 1vh;
+  height: 0.5vw;
   background-color: rgba(92, 76, 76, 0.192);
-  border-radius: 2vh;
+  border-radius: 1vw;
   width: 70%;
   left: 3%;
   bottom: 50%;
@@ -150,19 +150,19 @@ input:focus {
 
 #progressfinished {
   position: absolute;
-  height: 1.4vh;
+  height: 0.7vw;
   width: 2%;
   background-color: red;
-  border-radius: 2vh;
-  transform: translateY(-0.2vh);
+  border-radius: 1vw;
+  transform: translateY(-0.1vw);
   z-index: 1;
   transition: width 2s ease-out;
 }
 
 #progresscircle {
   position: absolute;
-  height: 3vh;
-  width: 3vh;
+  height: 1.5vw;
+  width: 1.5vw;
   background-color: red;
   border-radius: 50%;
   transform: translateY(-33%);
@@ -172,47 +172,47 @@ input:focus {
 
 #speed {
   position: absolute;
-  right: 1vh;
-  width: 11vh;
-  height: 10vh;
+  right: 0.5vw;
+  width: 5.5vw;
+  height: 5vw;
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 5vh;
-  border: 4vh solid rgba(0, 0, 0, 0.2);
-  border-radius: 1vh 20% 20% 1vh;
+  font-size: 2.5vw;
+  border: 0.2vw solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.5vw 20% 20% 0.5vw;
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
-  padding-top: 1vh;
+  padding-top: 0.5vw;
   line-height: 1;
   transition: background-color 0.2s ease-out;
 }
 
 .wpm {
-  font-size: 1vh;
+  font-size: 2vw;
 }
 
 #accuracy {
   position: absolute;
-  right: 12.4vh;
-  width: 10vh;
-  height: 8vh;
-  padding-left: 1vh;
+  right: 6.2vw;
+  width: 5vw;
+  height: 4vw;
+  padding-left: 0.5vw;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 4vh;
-  border: 0.4vh solid rgba(0, 0, 0, 0.2);
+  font-size: 2vw;
+  border: 0.2vw solid rgba(0, 0, 0, 0.2);
   border-radius: 20% 0 0 20%;
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   line-height: 1;
   text-align: center;
-  padding-top: 0.6vh;
+  padding-top: 0.3vw;
   transition: background-color 0.2s ease-out;
 }
 
 .acc {
-  font-size: 3vh;
+  font-size: 1.5vw;
 }
 
 #quotearea {
@@ -220,56 +220,56 @@ input:focus {
   position: relative;
   height: auto;
   background-color: rgb(219, 177, 61);
-  border-radius: 2vh;
-  padding: 4vh;
-  padding-top: 4vh;
-  padding-left: 16vh;
-  padding-right: 16vh;
-  padding-bottom: 11vh;
+  border-radius: 1vw;
+  padding: 2vw;
+  padding-top: 2vw;
+  padding-left: 8vw;
+  padding-right: 8vw;
+  padding-bottom: 5.5vw;
   margin: 0;
   margin-left: auto;
   margin-right: auto;
-  font-size: 4vh;
+  font-size: 2vw;
   /*font-family:'Verdana', Times, serif; */
   font-family: "DejaVu Sans Mono", monospace;
   z-index: 1;
   transition: padding-bottom 0.5s ease-out;
   user-select: none;
-  min-height: 20vh;
+  min-height: 10vw;
 }
 
 #authorimg {
   position: absolute;
-  left: -0.3vh;
-  top: 4vh;
-  padding: 2vh;
+  left: -0.15vw;
+  top: 2vw;
+  padding: 1vw;
   transform: translate(-50%, 0);
   background-color: rgb(219, 177, 61);
-  height: 20vh;
-  max-width: 24vh;
-  border-radius: 2vh;
+  height: 10vw;
+  max-width: 12vw;
+  border-radius: 1vw;
   filter: drop-shadow(0.2em 0.2em 0.5em #00000071);
 }
 
 #originimg {
   position: absolute;
-  right: -0.30vh;
-  top: 4vh;
-  padding: 2vh;
+  right: -0.15vw;
+  top: 2vw;
+  padding: 1vw;
   transform: translate(+50%, 0);
   background-color: rgb(219, 177, 61);
-  height: 20vh;
-  max-width: 24vh;
-  border-radius: 2vh;
+  height: 10vw;
+  max-width: 12vw;
+  border-radius: 1vw;
   filter: drop-shadow(0.2em 0.2em 0.5em #00000071);
 }
 
 #textarea {
-  padding: 2vh;
+  padding: 1vw;
   background-color: rgba(255, 255, 255, 20%);
-  border-radius: 2vh;
+  border-radius: 1vw;
   user-select: none;
-  max-height: 40vh;
+  max-height: 20vw;
   overflow: auto;
   scrollbar-width: none;
   ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -306,13 +306,13 @@ input:focus {
 }
 
 #authorname {
-  padding: 2vh;
+  padding: 1vw;
 
   background-color: rgba(0, 0, 0, 20%);
-  border-radius: 2vh;
+  border-radius: 1vw;
   display: inline-block;
   margin-left: auto;
-  margin-top: 2vh;
+  margin-top: 1vw;
 
   position: absolute;
   right: 50%;
@@ -320,18 +320,18 @@ input:focus {
   font-size: 60%;
   white-space: wrap;
   overflow: auto;
-  max-width: 54vh;
+  max-width: 27vw;
   color: rgb(30, 45, 46);
 }
 
 #restart {
   display: none;
   position: absolute;
-  height: 16vh;
-  width: 16vh;
+  height: 8vw;
+  width: 8vw;
   transition: left 0.5s ease-out 0s;
-  left: 4vh;
-  bottom: 4vh;
+  left: 2vw;
+  bottom: 2vw;
   background-color: rgb(110, 26, 26);
   border-radius: 50%;
   opacity: 0;
@@ -350,26 +350,26 @@ input:focus {
 }
 
 #restart:hover {
-  height: 18vh;
-  width: 18vh;
-  left: 2vh;
-  bottom: 3vh;
+  height: 9vw;
+  width: 9vw;
+  left: 1vw;
+  bottom: 1.5vw;
 }
 
 #restart.restarthover {
-  height: 18vh;
-  width: 18vh;
-  left: 2vh;
-  bottom: 3vh;
+  height: 9vw;
+  width: 9vw;
+  left: 1vw;
+  bottom: 1.5vw;
 }
 
 #next {
   display: none;
   position: absolute;
-  height: 16vh;
-  width: 16vh;
-  right: 4vh;
-  bottom: 4vh;
+  height: 8vw;
+  width: 8vw;
+  right: 2vw;
+  bottom: 2vw;
   background-color: rgb(32, 85, 32);
   border-radius: 50%;
   opacity: 0;
@@ -390,17 +390,17 @@ input:focus {
 }
 
 #next:hover {
-  height: 14vh;
-  width: 14vh;
-  right: 3vh;
-  bottom: 5vh;
+  height: 7vw;
+  width: 7vw;
+  right: 1.5vw;
+  bottom: 2.5vw;
 }
 
 #next.nexthover {
-  height: 14vh;
-  width: 14vh;
-  right: 3vh;
-  bottom: 3vh;
+  height: 7vw;
+  width: 7vw;
+  right: 1.5vw;
+  bottom: 2.5vw;
 }
 
 .noscript {
@@ -411,10 +411,10 @@ input:focus {
   display: flex;
   margin: auto;
   justify-content: center;
-  padding: 10vh;
+  padding: 10vw;
   background-color: black;
-  border-radius: 5vh;
-  margin: 2vh;
+  border-radius: 5vw;
+  margin: 2vw;
   margin-left: auto;
   margin-right: auto;
 }
@@ -422,10 +422,10 @@ input:focus {
 #inputfield {
   width: 30%;
   background-color: bisque;
-  font-size: 3vh;
+  font-size: 1.5vw;
   /*font-family:'Verdana', Times, serif; */
   font-family: "Courier New", Courier, monospace;
-  padding: 3vh;
+  padding: 1.5vw;
   margin: 0;
   margin-left: auto;
   margin-right: auto;
@@ -459,7 +459,7 @@ input:focus {
 
 @keyframes swipeup {
   to {
-    transform: translateY(-6vh);
+    transform: translateY(-6vw);
   }
 }
 
@@ -477,9 +477,9 @@ input:focus {
   width: 90%;
   height: 10;
   background-color: bisque;
-  font-size: 3vh;
+  font-size: 1.5vw;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  padding: 3vh;
+  padding: 1.5vw;
   margin: 0;
   margin-left: auto;
   margin-right: auto;
@@ -492,8 +492,8 @@ input:focus {
   transition: height 0.5s ease-out;
   overflow: hidden;
   resize: none;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
 }
 .newquoteinput:disabled {
   background-color: rgba(200, 200, 200, 0.671);
@@ -505,14 +505,14 @@ input:focus {
   position: relative;
   height: auto;
   background-color: rgb(219, 177, 61);
-  border-radius: 2vh;
-  padding: 4vh;
-  padding-top: 2vh;
+  border-radius: 1vw;
+  padding: 2vw;
+  padding-top: 1vw;
   margin: 0;
-  margin-top: 4vh;
+  margin-top: 2vw;
   margin-left: auto;
   margin-right: auto;
-  font-size: 4vh;
+  font-size: 2vw;
   /*font-family:'Verdana', Times, serif; */
   font-family: "DejaVu Sans Mono", monospace;
   z-index: 1;
@@ -536,7 +536,7 @@ input:focus {
 }
 
 .margin {
-  margin: 4vh;
+  margin: 2vw;
 }
 
 .nomargin {
@@ -552,79 +552,79 @@ input:focus {
 #languageinput {
   width: 100%;
   margin-left: 0;
-  margin-right: 6vh;
+  margin-right: 3vw;
   text-align: center;
 }
 
 #newauthimg {
   position: absolute;
-  right: -40vh;
-  top: 40vh;
-  padding: 2vh;
+  right: -20vw;
+  top: 20vw;
+  padding: 1vw;
   background-color: rgb(219, 177, 61);
-  height: 20vh;
-  max-width: 40vh;
-  border-radius: 2vh;
+  height: 10vw;
+  max-width: 20vw;
+  border-radius: 1vw;
   filter: drop-shadow(0.2em 0.2em 0.5em #00000071);
 }
 
 #neworiginimg {
   position: absolute;
-  right: -40vh;
-  top: 70vh;
-  padding: 2vh;
+  right: -20vw;
+  top: 35vw;
+  padding: 1vw;
   background-color: rgb(219, 177, 61);
-  height: 20vh;
-  max-width: 40vh;
-  border-radius: 2vh;
+  height: 10vw;
+  max-width: 20vw;
+  border-radius: 1vw;
   filter: drop-shadow(0.2em 0.2em 0.5em #00000071);
 }
 
 #submitQuote {
-  height: 10vh;
-  width: 30vh;
+  height: 5vw;
+  width: 15vw;
   background-color: rgba(200, 0, 0, 0.5);
-  border-radius: 2vh;
+  border-radius: 1vw;
   border: none;
-  font-size: 4vh;
+  font-size: 2vw;
   font-family: "Deja Vu Sans Mono";
   filter: drop-shadow(0.2em 0.2em 0.5em #00000071);
   transition: height 0.5s ease-out;
   transition: width 0.5s ease-out;
-  margin-right: 6vh;
+  margin-right: 3vw;
 }
 #submitQuote:hover {
-  width: 26vh;
+  width: 13vw;
   cursor: pointer;
 }
 
 #commitpass {
   margin-top: 0;
   margin-bottom: 0;
-  margin-left: 4vh;
-  margin-right: 4vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
   width: 50%;
 }
 
 #clear {
   position: absolute;
-  right: 4vh;
-  top: 6vh;
-  height: 6vh;
-  width: 16vh;
+  right: 2vw;
+  top: 3vw;
+  height: 3vw;
+  width: 8vw;
   background-color: rgba(200, 0, 0, 0.5);
-  border-radius: 2vh;
+  border-radius: 1vw;
   border: none;
-  font-size: 3vh;
+  font-size: 1.5vw;
   font-family: "Deja Vu Sans Mono";
   filter: drop-shadow(0.2em 0.2em 0.5em #00000071);
   transition: height 0.5s ease-out;
   transition: width 0.5s ease-out;
-  margin-right: 6vh;
+  margin-right: 3vw;
 }
 
 #clear:hover {
-  width: 14vh;
+  width: 7vw;
   cursor: pointer;
 }
 .dynamicinput {
@@ -711,14 +711,14 @@ input:valid ~ .onlytwo {
 
   display: flex;
   justify-content: space-between;
-  right: -20vh;
-  top: 50vh;
-  padding: 1vh;
+  right: -20vw;
+  top: 50vw;
+  padding: 1vw;
   background-color: rgb(219, 177, 61);
-  height: 3vh;
-  width: 10vh;
-  max-width: 20vh;
-  border-radius: 1vh;
+  height: 3vw;
+  width: 10vw;
+  max-width: 20vw;
+  border-radius: 1vw;
   filter: drop-shadow(0.2em 0.2em 0.5em #00000071);
 }
 
@@ -734,35 +734,35 @@ input:valid ~ .onlytwo {
 }
 
 #nextlink:hover {
-  filter: drop-shadow(1rem 1rem 1rem #000000);
+  filter: drop-shadow(1vw 1vw 1vw #000000);
   text-shadow: 0.2px 0 currentColor;
 }
 
 #lastlink:hover {
-  filter: drop-shadow(1rem 1rem 1rem #000000);
+  filter: drop-shadow(1vw 1vw 1vw #000000);
   text-shadow: 0.2px 0 currentColor;
 }
 
 #ok {
   background-color: green;
-  width: 10rem;
-  height: 10rem;
+  width: 10vw;
+  height: 10vw;
   border: 3px solid black;
-  border-radius: 5rem;
+  border-radius: 5vw;
   position: absolute;
-  bottom: -15rem;
-  right: 5rem;
+  bottom: -15vw;
+  right: 5vw;
 }
 
 #notok {
   background-color: red;
-  width: 10rem;
-  height: 10rem;
+  width: 10vw;
+  height: 10vw;
   border: 3px solid black;
-  border-radius: 5rem;
+  border-radius: 5vw;
   position: absolute;
-  bottom: -15rem;
-  left: 5rem;
+  bottom: -15vw;
+  left: 5vw;
 }
 
 #pdfcontent {
@@ -782,9 +782,9 @@ input:valid ~ .onlytwo {
 
 #pdfinput {
   position: fixed;
-  height: 4rem;
+  height: 4vw;
   width: 505px;
-  bottom: 3rem;
+  bottom: 3vw;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -810,7 +810,7 @@ input:valid ~ .onlytwo {
   padding: 0;
   background-color: rgba(0, 0, 0, 0.5);
   color:bisque;
-  height: 4rem;
+  height: 4vw;
   width: 50%;
   border-radius: 5px 0px 0px 5px;
 }
@@ -822,18 +822,18 @@ input:valid ~ .onlytwo {
   padding: 0;
   text-align: left;
   cursor: default;
-  height: 3.09rem;
+  height: 3.09vw;
   width: 50%;
   line-height: 1.5;
   border-radius: 0px 5px 5px 0px;
    opacity: 0.5;
-   padding-top:0.91rem;
+   padding-top:0.91vw;
 }
 
 #settings {
   position: fixed;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
-  height: 3rem;
+  height: 3vw;
   bottom:0px;
   right: 50%;
   transform: translateX(50%);
