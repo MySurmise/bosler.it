@@ -110,7 +110,7 @@ const insertIntoQuoteQueue = (quoteObject) => { //WARNING! Queue!!
 
 var quoteids = new Set();
 app.get("/", (req, res) => {
-  res.render("pug/layouts/main.pug")
+  res.redirect("/newsingle");
 });
 
 app.get("/newsingle", (req, res) => {

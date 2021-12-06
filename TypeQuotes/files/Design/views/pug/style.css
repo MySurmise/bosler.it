@@ -830,6 +830,40 @@ input:valid ~ .onlytwo {
    padding-top:0.91vw;
 }
 
+#mainpagearea {
+  background-color: antiquewhite;
+  height:5vw;
+  width: 80vw;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #settings {
   position: fixed;
   border-top: 1px solid rgba(0, 0, 0, 0.5);
