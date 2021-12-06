@@ -13,6 +13,30 @@ const os = require("os")
 const crypto = require("crypto");
 const { send } = require("process");
 const spawn = require("child_process").spawn;
+const upload = require("express-fileupload");
+const { render } = require("mustache");
+
+// Standard function from the documentation. Works a treat.
+const convert = async (file, output, preset) => {
+  const converter = new pdftohtml(file, output)
+
+  // If you would like to tap into progress then create
+  // progress handler
+  converter.progress((ret) => {
+    const progress = (ret.current * 100.0) / ret.total
+
+    console.log(`${progress} %`)
+  })
+
+  try {
+    // convert() returns promise
+    await converter.convert(preset || 'ipad')
+  } catch (err) {
+    console.error(`Psst! something went wrong: ${err.msg}`)
+  }
+
+}
+
 
 const app = express();
 const timelog = (objectToLog) => {
@@ -28,6 +52,7 @@ const timelog = (objectToLog) => {
 app.set("view engine", "pug");
 app.set("views", __dirname + "/files/Design/views");
 app.use(express.static(path.join(__dirname, "files/public")));
+app.use(upload())
 
 const db = new dbm(path.join(__dirname, "files/Quotes/DB/Quotes.db"), {
   verbose: timelog,
@@ -85,6 +110,7 @@ const insertIntoQuoteQueue = (quoteObject) => { //WARNING! Queue!!
 
 var quoteids = new Set();
 
+<<<<<<< HEAD
 app.get(["/"], (req, res) => {
 	//	res.render("pug/main.pug")
 	res.redirect("/newsingle")
@@ -92,6 +118,13 @@ app.get(["/"], (req, res) => {
 })
 
 app.get(["/newsingle"], (req, res) => {
+=======
+app.get("/", (req, res) => {
+  res.render("pug/layouts/main.pug")
+});
+
+app.get("/newsingle", (req, res) => {
+>>>>>>> 8757c219e31743ff97753a58010d49b83c8451b9
   randomQuote = db.prepare("SELECT quoteid FROM Quotes ORDER BY RANDOM() LIMIT 1").get();
   res.redirect("/quote/" + randomQuote.quoteid);
 });
@@ -160,10 +193,11 @@ app.get('/submit', (req, res) => {
       .replaceAll("“", '"')
       .replaceAll("”", '"')
       .replaceAll("„", '"')
-      .replaceAll("’", '"')
+      .replaceAll("’", "'")
       .replaceAll("‚", '"')
       .replaceAll("`", '"')
       .replaceAll("'", "\'")
+      .replaceAll("…", "...")
 
   })
   if (crypto.createHash('sha256').update(req.query.commitpass).digest('base64') == "YaEktf/spITQaDGuMHjO0xWBkVIwS9ncEpZ1KvlvMKs=") {
@@ -201,11 +235,11 @@ app.get('/amazingsearch', (req, res) => {
 })
 
 app.get('/newquotes', (req, res) => {
-  if (typeof(queuedb) == "undefined") {
+  if (typeof (queuedb) == "undefined") {
     queuedb = new dbm(path.join(__dirname, "files/Quotes/DB/queuedb.db"), {
       verbose: timelog,
     });
-  } 
+  }
   if (req.query.key) {
     fs.readFile("files/key.txt", 'utf8', (err, data) => {
       key = data.toString()
@@ -213,13 +247,13 @@ app.get('/newquotes', (req, res) => {
         if (req.query.quoteid) {
           timelog(quoteData)
           if (req.query.approve == "true") {
-            try{
-            delete quoteData.quoteid
+            try {
+              delete quoteData.quoteid
             } finally {
               timelog("Deleted")
             }
-              insertIntoQuotes(quoteData)
-            queuedb.prepare("delete from Quotes where quoteid=" + req.query.quoteid ).run();
+            insertIntoQuotes(quoteData)
+            queuedb.prepare("delete from Quotes where quoteid=" + req.query.quoteid).run();
             timelog("approved", req.query.quoteid)
             res.redirect("/newquotes?key=" + key)
             return
@@ -244,7 +278,68 @@ app.get('/newquotes', (req, res) => {
   }
 })
 
+app.get('/pdf', (req, res) => {
+  res.render('pug/pdf.pug')
+})
 
+app.get('/last', (req, res) => {
+  res.sendFile(__dirname + '/files/pdf/Output/' + count + ".html")
+  delete count
+})
+
+
+app.post('/pdfupload', function (req, res) {
+  let PDF;
+  let uploadPath;
+
+  if (!req.files || Object.keys(req.files).length === 0) {
+    return res.status(400).send('No files were uploaded.');
+  }
+
+  PDF = req.files.PDF;
+  directory = fs.readdirSync('./files/pdf/pdf-documents/')
+  count = parseInt(directory[0].slice(6))
+  uploadPath = __dirname + '/files/pdf/pdf-documents/' + count + ".pdf"
+  fs.rename(__dirname + '/files/pdf/pdf-documents/.count' + count, __dirname + '/files/pdf/pdf-documents/.count' + (count + 1), (err) => { if (err) console.log(err) })
+  if (directory.length > 10) {
+    output = fs.readdirSync(__dirname + '/files/pdf/Output/')
+    try {
+      output.splice(output.indexOf(".gitkeep"), 1)
+    } catch { }
+    output.sort(function (a, b) {
+      return parseInt(a) - parseInt(b);
+    });
+    output.slice(0, -5).forEach((file) => {
+      fs.unlink(__dirname + '/files/pdf/Output/' + file, (err) => { if (err) console.log(err) })
+    })
+    try {
+      directory.splice(output.indexOf(".gitkeep"), 1)
+    } catch { }
+    directory.sort(function (a, b) {
+      return parseInt(a) - parseInt(b);
+    });
+    directory.slice(1, -5).forEach((file) => {
+      fs.unlink(__dirname + '/files/pdf/pdf-documents/' + file, (err) => { if (err) console.log(err) })
+    })
+  }
+
+
+
+  PDF.mv(uploadPath, function (err) {
+    if (err)
+      return res.status(500).send(err);
+    const convertion = spawn("pdf2htmlEX " + __dirname + "/files/pdf/pdf-documents/" + count + ".pdf  --dest-dir " + __dirname + "/files/pdf/Output/", { shell: true })
+    console.log("pdf2htmlEX " + __dirname + "/files/pdf/pdf-documents/" + count + ".pdf  --dest-dir " + __dirname + "/files/pdf/Output/")
+    convertion.stdout.pipe(process.stdout)
+    convertion.stderr.pipe(process.stderr);
+    convertion.on('exit', () => {
+      convertion.kill('SIGINT')
+      res.render('pug/pdfwrite.pug')
+    })
+
+  })
+
+});
 
 
 
@@ -279,7 +374,7 @@ if (!os.release().endsWith('WSL2')) {
 } else {
   const port = 5000
   app.listen(port, () => {
-    timelog(`listening at http://localhost:${port}`);
+    timelog(`listening at http://localhost:${port}/pdf`);
   });
 }
 

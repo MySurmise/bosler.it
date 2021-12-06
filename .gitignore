@@ -4,3 +4,7 @@ node_modules
 *db-journal
 nohup.out
 key.txt
+*.pdf
+[0-9]*.html
+.vscode
+*.count[0-9]*
