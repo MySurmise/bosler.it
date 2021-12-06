@@ -1,0 +1,10 @@
+node_modules
+*.db
+.well-known
+*db-journal
+nohup.out
+key.txt
+*.pdf
+[0-9]*.html
+.vscode
+*.count[0-9]*
