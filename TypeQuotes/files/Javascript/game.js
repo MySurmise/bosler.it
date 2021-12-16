@@ -237,6 +237,6 @@ function aftertyping() {
   progresscircle.style.left = "96%";
   clearInterval(checkwpm);
   quotearea = document.getElementById("quotearea");
-  quotearea.style.paddingBottom = "12rem";
-  quotearea.style.minHeight = "12rem";
+  quotearea.style.paddingBottom = "11vw";
+  quotearea.style.minHeight = "11vw";
 }
