@@ -238,5 +238,5 @@ function aftertyping() {
   clearInterval(checkwpm);
   quotearea = document.getElementById("quotearea");
   quotearea.style.paddingBottom = "11vw";
-  quotearea.style.minHeight = "11vw";
+  quotearea.style.minHeight = "13vw";
 }
