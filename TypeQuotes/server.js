@@ -49,6 +49,24 @@ const timelog = (objectToLog) => {
   }
 };
 
+app.use(function(request, response, next) {
+
+    if (!request.secure) {
+		console.log(request.headers.host)
+		console.log(request.url)
+	
+       return response.redirect(301, "https://" + request.headers.host.replace('www.', '') + request.url);
+    }
+
+    next();
+})
+
+
+
+app.use((req, res, next) => {
+    console.log('LOL')
+	next();
+})
 app.set("view engine", "pug");
 app.set("views", __dirname + "/files/Design/views");
 app.use(express.static(path.join(__dirname, "files/public")));
@@ -336,12 +354,7 @@ app.post('/pdfupload', function (req, res) {
 
 
 
-
-
-
-
-
-
+app.enable('trust proxy')
 
 
 
