@@ -1,0 +1,95 @@
+body {
+  /* background: #040b18 */
+  background: black;
+}
+
+.App {
+  text-align: center;
+  color: wheat;
+  height: 300vh;
+}
+
+.backgroundHeading {
+  animation: zoomIn 1s cubic-bezier(0, 1.64, 0.98, 0.29) forwards;
+  z-index: -10;
+  font-size: 23vmin;
+  color: black;
+  -webkit-text-stroke: 2px rgb(87, 87, 87);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -40%);
+  user-select: none;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.arrowAtBottom {
+  width: 3vmax;
+  padding-top:10vmin;
+  height:auto;
+  padding-right: 20vmax;
+  padding-left: 20vmax;
+  animation: arrowAnimation infinite 1s ease-in-out;
+  position: absolute;
+  bottom: 3vh;
+  transition: bottom 1s;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: arrowMover infinite 2s cubic-bezier(0.41, 0.77, 0.5, 1.06);
+}
+
+.arrowAtBottom:hover {
+    animation: arrowHover forwards 1s cubic-bezier(0.41, 0.77, 0.5, 1.06);
+    padding-top:10vmax;
+  cursor: pointer;
+}
+
+@keyframes arrowAnimation {
+ 
+
+  50% {
+    opacity: 60%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+@keyframes arrowMover {
+ 10% {
+    bottom: 2.5vh;
+  }
+  50% {
+    bottom: 2vh;
+  }
+  100% {
+    bottom: 3vh;
+  }
+}
+
+@keyframes arrowHover {
+ 
+  0% {
+     padding-top:10vmin
+  }
+  100% {
+    opacity: 50%;
+    bottom: 0vh;
+  }
+}
+
+.constructionHeading {
+  color:bisque;
+  text-align: center;
+  border-bottom: 1px bisque solid;
+}

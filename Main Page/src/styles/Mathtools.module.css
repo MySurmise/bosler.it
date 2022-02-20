@@ -1,0 +1,73 @@
+.flipDownCard{
+    border: 1px beige solid;
+    width: 60vw;
+    max-height:6vmax;
+    position:relative;
+    left: 50vw;
+    transform: translateX(-50%);
+    overflow: hidden;
+    font-size: 1vmax;
+    background-color: black;
+    z-index: 5;
+    text-align: center;
+    color: beige;
+}
+
+.hasseDiagramm{
+    color: white;
+    text-align: center;
+}
+
+.enlargeArrow{
+    width: 2vmax;
+    height:auto;
+    position:absolute;
+    right: 2vmax;
+    top: 1.5vmax;
+    transition: all 0.1s ease-out;
+}
+
+.enlargeArrow:hover{
+    cursor: pointer;
+}
+
+.flipped {
+    /*transform: rotateZ(180deg);*/
+    transform: scaleY(-1);
+}
+
+.enlarged{
+    max-height:1000vmax;
+}
+
+.numberInputField{
+    width: 10vmax;
+    height: 2vmax;
+    font-size: 1vmax;
+    font-weight: 900;
+    padding: 0.3vmax;
+    text-align: center;
+}
+
+.submitButton{
+    height:2vmax;
+    padding: 0.3vmax;
+    width: 6vmax;
+    margin-left: 2vmax;
+    font-size: 1vmax;
+    font-weight: 900;
+    background-color: darkgrey;
+    border: none;
+}
+
+.submitButton:hover{
+    background-color: aliceblue;
+}
+
+.numberInputField:focus {
+    outline-width: none;
+}
+
+.cardHeading {
+    user-select: none;
+}

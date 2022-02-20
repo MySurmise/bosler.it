@@ -1,0 +1,26 @@
+.logoContainer {
+  user-select: none;
+  margin-top: 20vh;
+  top: 40vh;
+}
+
+.logos {
+  display: inline;
+  border-radius: 5vmax;
+  height: 4vmax;
+  margin-left: 0.5vmax;
+  margin-right: 0.5vmax;
+}
+
+.logos:hover {
+  animation: logoHover 0.3s ease-out forwards;
+}
+
+@keyframes logoHover {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 60%;
+  }
+}
