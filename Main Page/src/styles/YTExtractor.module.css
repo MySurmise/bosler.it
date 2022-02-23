@@ -1,0 +1,85 @@
+.YTPlayer {
+    position: absolute;
+    left:50%;
+    transform: translateX(-50%);
+    width: 60rem;
+    height:110rem;
+    top:-38rem;
+    z-index: 1;
+}
+
+.blocker {
+    position: absolute;
+    background-color: black;
+    left:50%;
+    transform: translateX(-50%);
+    width: 60rem;
+    height:60rem;
+    top:50rem;
+    z-index: 2;
+}
+
+.inputField {
+    height:4vmax;
+    width: 60vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:70vh;
+    border-radius: 1vmax;
+    font-size: 2vmax;
+    font-weight: 900;
+    padding-left: 1vmax;
+    padding-right: 1vmax;
+
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    z-index: 3;
+}
+
+.mainTextField{
+    width: 60vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:calc(73vh + 2vmax);
+    white-space: pre-line;
+    color:wheat;
+    border-radius: 1vmax;
+    font-size: 1.5vmax;
+    font-weight: 900;
+    padding-left: 1vmax;
+    padding-right: 1vmax;
+    background-color: black;
+    padding-top: 2vmax;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    z-index: 2;
+}
+
+.loopBegin {
+    position:absolute;
+    left:45%;
+    top:63%;
+    z-index: 5;
+    color: rgba(10, 10, 10, 0.4);
+        -webkit-text-stroke: white 1px;
+
+}
+.currentTime {
+    position:absolute;
+    left:50%;
+    top:63%;
+    z-index: 5;
+    color: rgba(10, 10, 10, 0.4);
+    border-radius: 1vh;
+    -webkit-text-stroke: white 1px;
+}
+
+.loopEnd {
+    position:absolute;
+    left:55%;
+    top:63%;
+    z-index: 5;
+    color: rgba(10, 10, 10, 0.4);
+        -webkit-text-stroke: white 1px;
+
+}
