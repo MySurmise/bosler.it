@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import styles from './../styles/ProjectButton.module.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faHome, faHomeAlt, faHomeLg } from "@fortawesome/free-solid-svg-icons";
 
 class ProjectButton extends Component {
     constructor(props) {
@@ -47,8 +49,6 @@ class ProjectButton extends Component {
         console.log("Entered " + this.text)
     }
 
-    
-
     render() {
         return (
             <div
@@ -57,7 +57,11 @@ class ProjectButton extends Component {
 
                 onClick={() => this.buttonClicked()}
                 onMouseEnter={() => this.buttonEntered()}>
-                {this.text}
+                {this.text ?
+                    this.text
+                    : <FontAwesomeIcon
+                    icon={faHomeLg} />}
+
             </div>
         )
     }
