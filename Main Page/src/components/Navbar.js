@@ -31,7 +31,7 @@ class Navbar extends Component {
         </div>
         <div style={this.projectButtonBar}>
           <ProjectButton text="Sandbox" pos={4} link="sandbox" />
-          <ProjectButton text="YTExtractor" pos={5} link="ytex" />
+          <ProjectButton text="VideoTools" pos={5} link="videoTools" />
         </div>
       </h1>
     );

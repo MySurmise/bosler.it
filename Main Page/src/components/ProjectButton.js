@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import styles from './../styles/ProjectButton.module.css'
 
 class ProjectButton extends Component {
-    constructor({ text, pos, link }) {
-        super({ text, pos, link })
-        this.text = text
-        this.link = link
+    constructor(props) {
+        super(props)
+        this.text = props.text
+        this.link = props.link
         this.transformation = 0;
-        if (pos) {
-            switch (pos) {
+        if (props.pos) {
+            switch (props.pos) {
                 case 1:
                     this.transformation = '50'
                     break;
@@ -25,7 +25,7 @@ class ProjectButton extends Component {
                     this.transformation = '80'
                     break;
                 default:
-                    console.log(pos)
+                    console.log(props.pos)
                     console.log(this.transformation)
                     break;
             }

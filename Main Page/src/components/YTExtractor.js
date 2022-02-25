@@ -6,27 +6,23 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import Youtube from 'react-youtube'
 import ytex from '../styles/YTExtractor.module.css'
+import { useParams } from 'react-router-dom'
 
 
 function YTExtractor() {
+    let videoID = useParams()['id'];
+    console.log(videoID);
+
     const [res, setres] = useState("")
     const [inputValue, setinputValue] = useState("")
     const [textField, settextField] = useState("")
     const [loopBegin, setloopBegin] = useState(0)
     const [loopLength, setloopLength] = useState(3)
     const [loopEnd, setloopEnd] = useState(loopLength)
-
     const [player, setplayer] = useState("")
     const [currentTime, setcurrentTime] = useState(0)
-    
+    const [videoIDinput, setvideoIDinput] = useState("")
 
-    const getLoopBegin = () => {
-        return loopBegin
-    }
-
-    const getLoopEnd = () => {
-        return loopEnd
-    }
     const onPlayerReady = (event) => {
         event.target.playVideo();
         event.target.unMute();
@@ -45,7 +41,6 @@ function YTExtractor() {
             player.seekTo(loopBegin)
         } 
     })
-
     
     const onInputKeyPress = (event) => {
         //console.log(event.key);
@@ -77,7 +72,7 @@ function YTExtractor() {
             setloopEnd(5)
         }
     }    
-
+    
     return (
         <div>
       <BackHomeButton />
@@ -87,8 +82,8 @@ function YTExtractor() {
             </div>
             <Youtube
                 className={ytex.YTPlayer}
-                videoId={"e632ECYF0U0"}
-                onReady={ onPlayerReady}
+                videoId={videoID}
+                onReady={onPlayerReady}
             />
             <div
                 className={ytex.blocker}
