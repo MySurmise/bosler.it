@@ -61,7 +61,6 @@ class ProjectButton extends Component {
                     this.text
                     : <FontAwesomeIcon
                     icon={faHomeLg} />}
-
             </div>
         )
     }

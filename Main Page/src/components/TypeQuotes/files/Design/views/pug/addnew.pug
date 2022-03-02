@@ -1,0 +1,65 @@
+extends layouts/main.pug
+
+block content 
+    #newquoteform
+        h3.centeredblock Commit new Quote
+        a#newauthlink
+            img#newauthimg
+        
+        #neworiginlink
+            a#neworiginlinklink
+                img#neworiginimg
+            #links
+                img#lastlink
+                img#nextlink
+        button#clear clear
+        .dynamicinput
+            textarea.newquoteinput#quoteinput(rows=1 required)
+            span.quotelabel Paste Quote here
+        div.flexbox(style = "width: 96%").centeredinline
+            .dynamicinput.short
+                input.newquoteinput#languageinput(rows=1 required)
+                span.inputlabel.thosetwofuckers Language
+                span.onlytwo()  (Only 2 letters!)
+            .dynamicinput.long
+                input(type='text', list='authors' required disabled).newquoteinput#authornameinput
+                span.inputlabel.thosetwofuckers Author/show name (needs language)
+            datalist#authors
+                each val in authorArray
+                    option= val
+        .dynamicinput
+            input(type='text', required).newquoteinput#authorurlinput
+            span.inputlabel Author Wikipedia/Description/Other Main Page URL
+        .dynamicinput
+            input(type='text',  required).newquoteinput#authorimginput
+            span.inputlabel Author image URL
+        br
+        h3 Origin (books, videos or other work)
+        div.flexbox(style = "width: 96%; ").centeredinline
+            .dynamicinput.widthseventy
+                input(type='text'  required disabled).newquoteinput#search
+                span.inputlabel Press Enter to search on...
+            .dynamicinput.widththirty
+                select(name='test').newquoteinput#searchengine
+                   each val in searchengines
+                    option= val
+        hr
+        .dynamicinput
+            input(type='text' required).newquoteinput#originurlinput
+            span.inputlabel Origin of Quote URL (Youtube Video or Amazon Book)
+        .dynamicinput
+            input(type='text' required).newquoteinput#originimginput
+            span.inputlabel Origin image URL (autofills from given website)
+        br 
+        div.flexbox(style = "justify-content:space-between")
+            input(type='password', placeholder="Instant commit Password (optional)").newquoteinput#commitpass
+            button#submitQuote submit
+        
+
+
+        
+        
+
+
+    script 
+        include  ../../../Javascript/addnew.js
