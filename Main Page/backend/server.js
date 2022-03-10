@@ -30,19 +30,32 @@ app.use(function (request, response, next) {
 })
 */
 app.use(cors({ credentials: true, origin: true }));
+app.use((req,res,next) => {
+  timelog(req.url)
+  next()
+})
 app.get("/playlistValues/:id", function (req, res) {
-    var returnTitles = function (error, stdout, stderr) {
-        if (error) {
-            console.log("error: ".concat(error.message));
-            return;
-        }
-        if (stderr) {
-            console.log("stderr: ".concat(stderr));
-            return;
-        }
-        console.log("stdout: ".concat(stdout));
-    };
+  var returnTitles = function (error, stdout, stderr) {
+    if (error) {
+      console.log("error: ".concat(error.message));
+      return;
+    }
+    if (stderr) {
+      console.log("stderr: ".concat(stderr));
+      return;
+    }
+    console.log("stdout: ".concat(stdout));
+  };
+  var options = {}
+  /*
+  if (process.platform == "linux") {
+    options = {
+      shell: "/usr/local/bin/fish "
+    }
+  }
+  */
   exec(`yt-dlp -j  --flat-playlist --skip-download ${req.params.id}`,
+    options,
     returnTitles);
 });
 var port = 3000;
@@ -57,8 +70,19 @@ try {
     key: fs.readFileSync("/etc/letsencrypt/live/bosler.it-0001/privkey.pem", 'utf8'),
     cert: fs.readFileSync("/etc/letsencrypt/live/bosler.it-0001/fullchain.pem", 'utf8')
   }, app);
+  console.log("Creating https Server")
 } catch {
-  var server = http.createServer(app)
+  try {
+    var server = https.createServer({
+      key: fs.readFileSync("/home/ubuntu/keys/bosler.it-0001/privkey3.pem", 'utf8'),
+      cert: fs.readFileSync("/home/ubuntu/keys/bosler.it-0001/fullchain3.pem", 'utf8')
+    }, app);
+    console.log("Creating https Server")
+  } catch (exc) {
+    console.log(exc)
+    var server = http.createServer(app)
+    console.log("Creating http Server")
+  }
 }
 server.listen(port);
 /* Authorsearch. Abandoned because also possible in browser and my Server is literally a Raspi.
