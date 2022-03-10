@@ -48,7 +48,7 @@
 }
 
 .idLabel {
-    width: 20vw;
+    width: 60vw;
     border-radius: 1vmax;
     position: absolute;
     left: 50vw;
@@ -57,4 +57,5 @@
     top: 19vmax;
     height: 4vmax;
     font-size: 2vmax;
+    text-align: center;
 }

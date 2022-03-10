@@ -1,21 +1,22 @@
-var express = require('express');
-var path = require('path');
-var cors = require('cors');
-var https = require('https');
-var http = require('http');
-var fs = require('fs');
-var exec = require("child_process").exec;
-var app = express();
-var timelog = function (objectToLog) {
-    var currentTime = new Date(Date.now());
+const express = require('express')
+const path = require('path')
+const cors = require('cors')
+const https = require('https')
+const fs = require('fs')
+const { exec } = require("child_process");
+
+
+const app = express();
+const timelog = (objectToLog: string) => {
+    const currentTime = new Date(Date.now());
     if (typeof objectToLog == "string" || typeof objectToLog == "undefined") {
         console.log("[" + ("" + currentTime).split(" ").slice(1, 5).join(" ") + "] " + objectToLog);
-    }
-    else {
+    } else {
         console.log("[" + ("" + currentTime).split(" ").slice(1, 5).join(" ") + "] ");
         console.log(objectToLog);
     }
 };
+
 /*
 app.use(function (request, response, next) {
 
@@ -29,38 +30,82 @@ app.use(function (request, response, next) {
     next();
 })
 */
-app.use(cors({ credentials: true, origin: true }));
-app.get("/playlistValues/:id", function (req, res) {
-    var returnTitles = function (error, stdout, stderr) {
-        if (error) {
-            console.log("error: ".concat(error.message));
-            return;
-        }
-        if (stderr) {
-            console.log("stderr: ".concat(stderr));
-            return;
-        }
-        console.log("stdout: ".concat(stdout));
-    };
-  exec(`yt-dlp -j  --flat-playlist --skip-download ${req.params.id}`,
-    returnTitles);
-});
-var port = 3000;
-/*
 
+app.use(cors({ credentials: true, origin: true }))
+
+
+app.get("/playlistValues/:id", (req: { params: { id: string | any[] } }, res: any) => {
+  const returnTitles: any = (error: { message: any }, stdout: any, stderr: any) => {
+      if (error) {
+        console.log(`error: ${error.message}`)
+        return
+      }
+      if (stderr) {
+        console.log(`stderr: ${stderr}`)
+        return
+      }
+      console.log(`stdout: ${stdout}`)
+  }
+  
+  if (req.params.id.length == 11) {
+    exec(`yt-dlp -j  --flat-playlist --skip-download 'https://youtu.be/${req.params.id}'`, returnTitles);
+  } else {
+    exec(`yt-dlp -j  --flat-playlist --skip-download 'https://youtube.com/playlist?list=${req.params.id}'`,
+      returnTitles);
+  }
+})
+
+const port = 3000
+/*
 app.listen(port, () => {
     timelog(`listening at http://localhost:${port}`);
 });
 */
-try {
-  var server = https.createServer({
-    key: fs.readFileSync("/etc/letsencrypt/live/bosler.it-0001/privkey.pem", 'utf8'),
-    cert: fs.readFileSync("/etc/letsencrypt/live/bosler.it-0001/fullchain.pem", 'utf8')
-  }, app);
-} catch {
-  var server = http.createServer(app)
-}
-server.listen(port);
+
+const server = https.createServer({
+  key: fs.readFileSync(`/etc/letsencrypt/live/bosler.it-0001/privkey.pem`, 'utf8'),
+  cert: fs.readFileSync(`/etc/letsencrypt/live/bosler.it-0001/fullchain.pem`, 'utf8')
+}, app);
+
+server.listen(port)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Authorsearch. Abandoned because also possible in browser and my Server is literally a Raspi.
 app.get("/authorsearch", (req, res) => {
   currentauth = req.query.q;

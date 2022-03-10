@@ -7,6 +7,10 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import Test from "./Test";
 
 function Home() {
+  console.log("Send request")
+  
+ 
+  
   return (
     <div className="App">
       <Navbar />

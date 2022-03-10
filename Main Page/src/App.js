@@ -10,6 +10,7 @@ import Main_tq from "components/TypeQuotes/Main_tq"
 import Quotetyping_tq from "components/TypeQuotes/Quotetyping_tq"
 import "styles/App.css";
 import { useState } from "react";
+import TsTest from "components/TsTest";
 
 function App() {
   const host = window.location.hostname;
@@ -47,6 +48,7 @@ function App() {
             <Route path="/supercut/:id" element={<Supercut />} />
             <Route path="/sandbox" element={<Sandbox />} />
             <Route path="/relations" element={<Relations />} />
+            <Route path="/tstest" element={<TsTest />} />
           </Routes>
         </Router>
       );
@@ -55,7 +57,6 @@ function App() {
       window.location = url.replace(subdomain + ".", "")
       return null;
   }
-    
 }
 
 export default App;

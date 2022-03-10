@@ -2,11 +2,11 @@ import React from "react";
 import Main_tq from "./Main_tq";
 import { useParams } from "react-router-dom";
 
-import sqlite3 from 'sqlite3';
 
 
 function Quotetyping_tq() {
-    var quoteData;
+  var quoteData;
+  
 /*
     const db = new sqlite3.Database("public/TypeQuotes/Quotes/DB/Quotes.db",
     {
