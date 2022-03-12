@@ -34,7 +34,10 @@ app.use((req,res,next) => {
   timelog(req.url)
   next()
 })
-app.get("/playlistValues/:id", function (req, res) {
+
+app.get("/playlistValues/:link",
+  function (req, res) {
+    
   var returnTitles = function (error, stdout, stderr) {
     if (error) {
       console.log("error: ".concat(error.message));
@@ -44,9 +47,13 @@ app.get("/playlistValues/:id", function (req, res) {
       console.log("stderr: ".concat(stderr));
       return;
     }
-    console.log("stdout: ".concat(stdout));
+    console.log(stdout)
+    res.send(stdout)
   };
-  var options = {}
+    var options = {
+      maxBuffer: 1024 * 1000,
+      //shell: "/usr/local/bin/fish"
+    }
   /*
   if (process.platform == "linux") {
     options = {
@@ -54,9 +61,18 @@ app.get("/playlistValues/:id", function (req, res) {
     }
   }
   */
-  exec(`yt-dlp -j  --flat-playlist --skip-download ${req.params.id}`,
-    options,
-    returnTitles);
+    console.log(`Executing command "yt-dlp -j  --flat-playlist --skip-download ${req.params.link}"`)
+
+    const child = exec(`yt-dlp -j  --flat-playlist --skip-download ${req.params.link}`,
+      options);
+    //child.stdout.pipe(process.stdout)
+    var output = ""
+    child.stdout.on('data', function (data) {
+      res.write(data.toString())
+    });
+    child.on('exit', () => {
+      res.end()
+    })
 });
 var port = 3000;
 /*
