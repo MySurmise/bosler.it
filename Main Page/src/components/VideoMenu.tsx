@@ -50,13 +50,30 @@ function VideoMenu() {
                 setgeneratedLink("https://youtube.com")
             }
             return;
-        }
-        else if (link.includes("youtu.be/")) {
-            id = link.split("be/")[1].substring(0, 11)
+        } else if (link.includes("/c/")) {
+            id = link.split("/c/")[1].split((/[^0-9A-z+\-\_]/))[0]
+            setplaylistID(2)
+            setidLabel( id)
+            setinvalidID(false)
+            setgeneratedLink(`https://youtube.com/c/${id}`)
+            return;
+        } else if (
+          link.includes("youtube.com/") &&
+          link.split("youtube.com/")[1] != "" &&
+          link.split("youtube.com/")[1].split(/[^0-9A-z+\-\_]/).length == 1
+        ) {
+          id = link.split("youtube.com/")[1];
+          setplaylistID(2);
+          setidLabel(id);
+          setinvalidID(false);
+          setgeneratedLink(`https://youtube.com/c/${id}`);
+          return;
+        } else if (link.includes("youtu.be/")) {
+          id = link.split("be/")[1].substring(0, 11);
         } else if (link.includes("=")) {
-            id = link.split("=")[1].substring(0, 11)
+          id = link.split("=")[1].substring(0, 11);
         } else {
-            id = link
+          id = link;
         }
         setplaylistID(0)
         if (/^[0-9A-z+\-\_]{11}$/.test(id)) {
@@ -82,7 +99,7 @@ function VideoMenu() {
                     setvideoLink(e.target.value)
                     updateID(e)
                 }}
-              placeholder={"Type in Youtube-Link..."}
+              placeholder={"Type in Youtube-Link, -Channel, or -Playlist..."}
           >
             </input>
             <a href={generatedLink}>
@@ -91,12 +108,14 @@ function VideoMenu() {
                     style={invalidID ? { color: "rgba(255,50,50,0.5)" } : {}}>
                     {playlistID == 1 ? "Playlist-" : (playlistID == 2? "Channel-":"Video-" )}ID: {idLabel}</h1>
             </a>
-          <div className={styles.buttons}>
-              <button
-                className={styles.button}
-                    onClick={() => changeToTool('transcribe')}>
-                  Transcribe Video
-              </button>
+            <div className={styles.buttons}>
+                {playlistID == 0 ?
+                    <button
+                        className={styles.button}
+                        onClick={() => changeToTool('transcribe')}>
+                        Transcribe Video
+                    </button>
+                    : ""}
               <button
                   className={styles.button}
                     onClick={() => changeToTool('supercut')}>

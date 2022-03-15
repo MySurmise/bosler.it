@@ -11,6 +11,7 @@ import Quotetyping_tq from "components/TypeQuotes/Quotetyping_tq"
 import "styles/App.css";
 import { useState } from "react";
 import TsTest from "components/TsTest";
+import { useEffect } from "react";
 
 function App() {
   const host = window.location.hostname;
@@ -25,6 +26,9 @@ function App() {
     }
   } 
 
+  useEffect(() => {    
+    document.title = `bosler.it - Marius Bosler`;
+  });
 
 
   switch (subdomain) {
@@ -45,7 +49,7 @@ function App() {
             <Route path="/mathtools" element={<Mathtools />} />
             <Route path="/videoTools" element={<VideoMenu />} />
             <Route path="/transcribe/:id" element={<YTExtractor />} />
-            <Route path="/supercut/:id" element={<Supercut />} />
+            <Route path="/supercut/:link" element={<Supercut />} />
             <Route path="/sandbox" element={<Sandbox />} />
             <Route path="/relations" element={<Relations />} />
             <Route path="/tstest" element={<TsTest />} />

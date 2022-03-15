@@ -4,8 +4,9 @@ var cors = require('cors');
 var https = require('https');
 var http = require('http');
 var fs = require('fs');
-var exec = require("child_process").exec;
+var spawn = require("child_process").spawn;
 var app = express();
+
 var timelog = function (objectToLog) {
     var currentTime = new Date(Date.now());
     if (typeof objectToLog == "string" || typeof objectToLog == "undefined") {
@@ -61,16 +62,23 @@ app.get("/playlistValues/:link",
     }
   }
   */
-    console.log(`Executing command "yt-dlp -j  --flat-playlist --skip-download ${req.params.link}"`)
+    //console.log(`Executing command "yt-dlp -j  --flat-playlist --skip-download ${req.params.link}"`)
 
-    const child = exec(`yt-dlp -j  --flat-playlist --skip-download ${req.params.link}`,
-      options);
+      const child = spawn(`yt-dlp`, ["-j",  "--flat-playlist", "--skip-download", `${req.params.link}`],options);
+    //const child = spawn(`echo`, ['test'])
     //child.stdout.pipe(process.stdout)
     var output = ""
     child.stdout.on('data', function (data) {
+      //console.log('data: \n' +data)
       res.write(data.toString())
     });
-    child.on('exit', () => {
+    child.stderr.on('data', (err) => {
+      console.log('err: \n' +err)
+    })
+    child.stdout.on('error', (err) => {
+      console.log('err: \n' +err)
+    })
+    child.on('close', () => {
       res.end()
     })
 });
