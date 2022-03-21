@@ -1,0 +1,12 @@
+extends layouts/main.pug
+
+block content 
+    #newquoteform
+        h3.centeredblock Approve new Quotes
+        .dynamicinput
+            input.newquoteinput(rows=1 required)#password
+            span.inputlabel Type in Password
+        if attempted
+            h5 Wrong Password.
+    script
+        include ../../../Javascript/newquotes.js

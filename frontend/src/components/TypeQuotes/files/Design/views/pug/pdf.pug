@@ -1,0 +1,11 @@
+extends layouts/main.pug
+
+block content 
+    #newquoteform
+        h2 Upload your pdf
+        form#uploadForm(ref='uploadForm', action='/pdfupload', method='post', enctype='multipart/form-data')
+            input(type='file', name='PDF').newquoteinput
+            input(type='submit', value='Upload!', onmouseover="this.style.textDecoration='underline';", onmouseout="this.style.textDecoration='none'").newquoteinput
+            p(style = "font-size: 1rem") (Convertion can take several minutes! Please wait!)
+        
+
