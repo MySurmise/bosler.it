@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from "../styles/Mathtools.module.css";
+import styles from "./Mathtools.module.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown, faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";

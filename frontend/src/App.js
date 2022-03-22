@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "components/Home";
-import Mathtools from "components/Mathtools";
+import Home from "components/Home/Home";
+import Mathtools from "components/Mathtools/Mathtools";
 import Relations from "components/Relations";
 import Sandbox from "components/Sandbox";
-import YTExtractor from "components/YTExtractor";
-import VideoMenu from "components/VideoMenu";
-import Supercut from "components/Supercut";
+import YTExtractor from "components/VideoTools/YTExtractor";
+import VideoMenu from "components/VideoTools/VideoMenu";
+import Supercut from "components/VideoTools/Supercut";
 import Main_tq from "components/TypeQuotes/Main_tq"
 import Quotetyping_tq from "components/TypeQuotes/Quotetyping_tq"
 import "styles/App.css";
 import { useState } from "react";
-import TsTest from "components/TsTest";
+import TsTest from "components/misc/TsTest";
 import { useEffect } from "react";
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
   let splittedHost = host.split(".");
 
   if (splittedHost.length !== 1) {
-    if (splittedHost[splittedHost.length - 1] == "localhost") {
+    if (splittedHost[splittedHost.length - 1] === "localhost") {
       subdomain = splittedHost.slice(0, -1).join(".");
     } else {
       subdomain = splittedHost.slice(0, -2).join(".");
@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {    
     document.title = `bosler.it - Marius Bosler`;
-  });
+  }, []);
 
 
   switch (subdomain) {
@@ -50,6 +50,7 @@ function App() {
             <Route path="/videoTools" element={<VideoMenu />} />
             <Route path="/transcribe/:id" element={<YTExtractor />} />
             <Route path="/supercut/:link" element={<Supercut />} />
+            <Route path="/supercut" element={<Supercut />} />
             <Route path="/sandbox" element={<Sandbox />} />
             <Route path="/relations" element={<Relations />} />
             <Route path="/tstest" element={<TsTest />} />

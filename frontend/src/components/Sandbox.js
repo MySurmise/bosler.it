@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/App.css";
-import BackHomeButton from "./BackHomeButton";
-import styles from "../styles/Mathtools.module.css";
+import BackHomeButton from "./misc/BackHomeButton";
+import styles from "./Mathtools/Mathtools.module.css";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown, faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";

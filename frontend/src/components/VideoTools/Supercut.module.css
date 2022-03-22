@@ -1,0 +1,309 @@
+@media all and (orientation: landscape) {
+    .videoCard {
+        height: 12vh;
+        width: 60vw;
+        border: 1px whitesmoke solid;
+        border-radius: 1vh;
+        position:relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 1vh;
+        box-sizing: border-box ;
+
+    }
+
+}
+
+@media all and (orientation: portrait) {
+    .videoCard {
+        height: 12vh;
+        width: 100vw;
+        border: 2px whitesmoke solid;
+        border-radius: 1vh;
+        position:relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 1vh;
+        box-sizing: border-box ;
+    }
+}
+
+.searchOuter {
+    position: absolute;
+    height:8vh;
+    width: 8vh;
+    margin: 0;
+    top: 45%;
+    right: 5%;
+    transition: all 0.2s ease-in-out;
+}
+
+.search {
+    position:absolute;
+    height: 100%;
+    color:rgb(187, 187, 187);
+}
+
+
+.searchInner {
+    position:absolute;
+    top: 15%;
+    right: 20%;
+    height: 70%;
+    color:black;
+    transition: all 0.2s ease-in-out;
+}
+
+.searchOuter:hover .searchInner{
+    right: 0;
+}
+
+.searchOuter:hover {
+    right: 4%;
+    padding-left: 2%;
+    cursor:pointer;
+    height: 10vh;
+    top: calc(45% - 1vh);
+}
+
+.cutOuter {
+    position: absolute;
+    height:8vh;
+    width: 8vh;
+    margin: 0;
+    top: 35%;
+    right: 5%;
+    transition: all 0.2s ease-in-out;
+}
+
+.cutOuter:hover .cutInner{
+    right: -5%;
+}
+
+.cutOuter:hover {
+    right: 4%;
+    padding-left: 2%;
+    cursor:pointer;
+    height: 10vh;
+    top: calc(35% - 1vh);
+}
+
+.cutInner {
+    position:absolute;
+    top: 15%;
+    right: 15%;
+    height: 70%;
+    color:black;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.plus {
+    position: absolute;
+    top: 60%;
+    height: 8vh;
+    color:rgb(187, 187, 187);
+    right: 5%;
+    transition: all 0.2s ease-out;
+}
+
+.plus:hover {
+    height: 10vh;
+    top: calc(60% - 1vh);
+    right: calc(5% - 1vh);
+    cursor:pointer;
+}
+
+.videoCardThumbnail {
+    position: absolute;
+    height: 90%;
+    width: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 0.5%;
+    border-radius: 1vh 0 0 1vh;
+}
+
+.videoCardTitle {
+    position:relative;
+    color:bisque;
+    font-size: 2.5vh;
+    font-weight: 700;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20vh;
+    width: 42vw;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.videoCardAuthor {
+    position:absolute;
+    color:whitesmoke;
+    font-size: 1.5vh;
+    font-weight: 500;
+    top: 60%;
+    left: 20vh;
+    width: 30vw;
+}
+
+
+.tableHead {
+    height: 8vh;
+    border: 2px whitesmoke solid;
+    border-radius: 1vh 1vh 0 0;
+    position:relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 1vh;
+    box-sizing: border-box;
+}
+.yes{
+    position:absolute;
+    color:rgb(0, 134, 34);
+    height: 4vh;
+    right: 7vh;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 40%;
+}
+.no{
+    position:absolute;
+    color:rgb(134, 0, 0);
+    height: 4vh;
+    right: 2vh;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 40%;
+}
+.yes:hover, .no:hover {
+    opacity: 70%;
+}
+.activated, .activated:hover {
+    opacity: 100%;
+}
+
+
+.loading {
+    height: 20vmin;
+    width: 20vmin;
+    position:absolute;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.smallLoading {
+    height: 40%;
+    width: auto;
+    position:absolute;
+    color: white;
+    top: 50%;
+    left: 2.5%;
+    transform: translate(-50%, -50%);
+}
+
+.tableHeading {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 3vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    left: 5%;
+    width: calc(100% - 14vh);
+}
+
+.pleaseWait {
+    position: absolute;
+    top: 70%;
+    font-size: 3vh;
+    color: white;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.popupOuter {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.popupInner {
+    position: absolute;
+    transition: all 0.5s ease-in-out;
+    background-color: black;
+    border: 0.3vh white solid;
+    border-radius: 2vh;
+    top: 150%;
+    bottom: -50%;
+    right: 15%;
+    left: 15%;
+    animation: flyInFromDown 0.5s ease-in-out forwards;
+}
+
+@keyframes flyInFromDown {
+
+    to {
+        top: 50%;
+        bottom: 0;
+        right: 15%;
+        left: 15%;
+    }
+}
+
+.spinning {
+    animation: spin 2s linear infinite;
+}
+
+.idLabel {
+    width: 60vw;
+    border-radius: 1vmax;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color:rgba(255, 255, 255, 0.541);
+    top: 19%;
+    height: 4%;
+    text-align: center;
+}
+
+.ok {
+    position: absolute;
+    bottom: 5%;
+    width: 6%;
+    height: auto;
+    color:rgb(187, 187, 187);
+    right: 45%;
+    transform: translateX(50%);
+    transition: width, height 0.2s ease-in-out;
+}
+
+.cancel {
+    position: absolute;
+    bottom: 5%;
+    width: 6%;
+    height: auto;
+    color:rgb(187, 187, 187);
+    right: 55%;
+    transform: translateX(50%);
+    transition: width, height 0.2s ease-in-out;
+}
+
+.ok:hover, .cancel:hover {
+    width: 7%;
+    bottom: 4%;
+}
+
+@keyframes spin {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

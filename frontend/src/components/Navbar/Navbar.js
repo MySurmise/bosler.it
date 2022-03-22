@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ProjectButton from "./ProjectButton";
-import styles from "./../styles/Navbar.module.css";
+import styles from "./Navbar.module.css";
 
 class Navbar extends Component {
   constructor(props) {

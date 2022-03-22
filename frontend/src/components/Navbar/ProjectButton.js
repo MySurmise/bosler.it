@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import styles from './../styles/ProjectButton.module.css'
+import styles from './ProjectButton.module.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faHome, faHomeAlt, faHomeLg } from "@fortawesome/free-solid-svg-icons";
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import ProjectButton from './ProjectButton'
+import ProjectButton from '../Navbar/ProjectButton'
 function BackHomeButton() {
     return (
          <ProjectButton

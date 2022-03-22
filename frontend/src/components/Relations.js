@@ -1,6 +1,6 @@
 import React from 'react'
 import "../styles/App.css"
-import BackHomeButton from './BackHomeButton'
+import BackHomeButton from './misc/BackHomeButton'
 function Relations() {
   return (
       <div>

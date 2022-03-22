@@ -812,7 +812,7 @@ input:valid ~ .onlytwo {
   color:bisque;
   height: 4vw;
   width: 50%;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0 0px 5px;
 }
 
 #nexttext {

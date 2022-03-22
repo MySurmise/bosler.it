@@ -1,16 +1,13 @@
 import React from "react";
-import "../styles/App.css";
-import Navbar from "./Navbar";
+import "styles/App.css";
+import Navbar from "components/Navbar/Navbar";
 import Logos from "./Logos";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
-import Test from "./Test";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
+import MeDescription from "./MeDescription";
 
 function Home() {
-  console.log("Send request")
-  
- 
-  
+
   return (
     <div className="App">
       <Navbar />
@@ -25,7 +22,7 @@ function Home() {
         icon={faAngleDown}
       />
 
-      <Test />
+      <MeDescription />
     </div>
   );
 }

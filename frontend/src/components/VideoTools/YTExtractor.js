@@ -1,10 +1,10 @@
 import React from 'react'
-import BackHomeButton from './BackHomeButton'
-import '../styles/App.css'
-import '../styles/YTExtractor.css'
+import BackHomeButton from '../misc/BackHomeButton'
+import '../../styles/App.css'
+import './YTExtractor.css'
 import { useState, useEffect } from 'react'
 import Youtube from 'react-youtube'
-import ytex from '../styles/YTExtractor.module.css'
+import ytex from './YTExtractor.module.css'
 import { useParams } from 'react-router-dom'
 
 

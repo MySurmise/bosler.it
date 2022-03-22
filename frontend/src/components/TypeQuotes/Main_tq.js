@@ -9,17 +9,17 @@ function Main_tq(props) {
   return (
     <div>
       <nav><a href="/">
-        <img class="logo" src={clip} alt="TypeQuotes Logo"></img>
+        <img className="logo" src={clip} alt="TypeQuotes Logo"/>
       </a>
-        <div class="navbar" target="_blank" title="Go to TypeQuotes Home">
+        <div className="navbar" target="_blank" title="Go to TypeQuotes Home">
           <a href="/">
-          <p class="titlename typing">TypeQuotes</p>
-          <p></p></a>
-          <div class="navlinks">
-            <a class="navlinkitem" href="https://bosler.it"> Home</a>
-            <a class="navlinkitem"> Start Multiplayer</a>
-            <a class="navlinkitem" href="/newsingle"> Start Singleplayer</a>
-            <a class="navlinkitem" href="/addnew"> Add new</a>
+          <p className="titlename typing">TypeQuotes</p>
+          <p/></a>
+          <div className="navlinks">
+            <a className="navlinkitem" href="https://bosler.it"> Home</a>
+            <a className="navlinkitem"> Start Multiplayer</a>
+            <a className="navlinkitem" href="/newsingle"> Start Singleplayer</a>
+            <a className="navlinkitem" href="/addnew"> Add new</a>
           </div>
         </div>
       </nav>

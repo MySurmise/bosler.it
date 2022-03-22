@@ -1,0 +1,55 @@
+.myImage {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left:0;
+}
+
+.textBackground{
+    width: 40%;
+    padding: 3% 4% 3% 4%;
+    border-radius: 5vh;
+    position:absolute;
+    top: 107vh;
+    transition: all 0.2s;
+    opacity: 0;
+    background-color: rgba(255,255,255,0.25);
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: blendInText 0.7s ease-out forwards;
+}
+
+.text {
+    font-size: 2.5vh;
+    font-weight: 300;
+    filter: drop-shadow(0.01vh 0.01vh 0.2vh  #000000);
+}
+
+.textBackgroundBelow{
+    width: 40%;
+    padding: 0 4% 4% 4%;
+    border-radius: 5vh;
+    position:absolute;
+    top: 200vh;
+    transition: all 0.2s;
+    opacity: 1;
+    background-color: rgba(255,255,255,0.25);
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@keyframes blendInText {
+    0% {
+        opacity: 0%;
+    }
+    20% {
+        top: 110vh;
+        opacity: 100%;
+    }
+    100% {
+        top: 110vh;
+        opacity: 100%;
+    }
+}
