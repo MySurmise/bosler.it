@@ -1,6 +1,7 @@
 import React, {FunctionComponent, useEffect, useState} from 'react';
 import bildVonMir from 'public/bildVonMir.jpg'
 import styles from './Home.module.css'
+
 interface OwnProps {}
 
 type Props = OwnProps;
@@ -45,6 +46,9 @@ const MeDescription: FunctionComponent<Props> = (props) => {
                         Schau dich gerne mal um, und falls irgendwelche Fragen aufkommen, schreib mich an!
                     </span>
                 </div>
+                        <div className={styles.bottomLinks}>
+                        <a className={styles.text} href={"mailto:marius.bosler@zoho.com"}>Kontakt</a>
+                        </div>
                     </>
                     :
                     null
