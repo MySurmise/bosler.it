@@ -1,8 +1,14 @@
 .myImage {
-    width: 100%;
+    height: 140vh;
+}
+
+.myImageContainer {
     position: absolute;
-    top: 100%;
-    left:0;
+    top:100%;
+    overflow: hidden;
+    display:flex;
+    justify-content:center;
+    width: 100vw;
 }
 
 .textBackground{
@@ -27,7 +33,7 @@
 }
 
 .textBackgroundBelow{
-    width: 50%;
+    width: 52%;
     padding: 0 4% 4% 4%;
     border-radius: 5vh;
     position:absolute;

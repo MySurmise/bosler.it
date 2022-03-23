@@ -1,8 +1,14 @@
-import React from 'react'
+import React, {ReactChild, ReactChildren, ReactNode} from 'react'
 
-function Spacer({height}) {
+function Spacer(props : {height : string, children?: ReactNode}) {
   return (
-      <div style={{ height: height }}></div>
+      <div style={{
+  position: "relative",
+  height: props.height,
+        pointerEvents:"none"
+}}>
+          {props.children}
+      </div>
   )
 }
 
