@@ -47,6 +47,7 @@ function AddNewVideoPopup ({setaddNew, fetchNewVideos}) {
         <FontAwesomeIcon icon={faCircleXmark} className={styles.cancel} onClick={() => setaddNew(false)}/>
         <FontAwesomeIcon icon={faCircleCheck} className={styles.ok} onClick={() => {
             setaddNew(false)
+            console.log("fetching new videos to " + generatedLink)
             fetchNewVideos(generatedLink)
         }}/>
 

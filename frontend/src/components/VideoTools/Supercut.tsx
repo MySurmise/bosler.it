@@ -16,6 +16,8 @@ import {extractID} from "components/VideoTools/VideoMenu";
 import AddNewVideoPopup from "./AddNewVideoPopup";
 import VideoCard from "./VideoCard";
 import BackHomeButton from "../misc/BackHomeButton";
+import VisibilitySensor from "react-visibility-sensor";
+
 
 function Supercut() {
     interface VideoData {
@@ -39,13 +41,14 @@ function Supercut() {
     const [videos, setvideos] = useState<VideoData[]>([]);
     const [finishedLoading, setfinishedLoading] = useState(false);
     const [finishedSmallLoading, setfinishedSmallLoading] = useState(true);
-
+    const [pageLoaded, setpageLoaded] = useState(false);
     const [addNew, setaddNew] = useState(false)
 
     let refs: any = [];
 
     function fetchNewVideos(link: string) {
         setfinishedSmallLoading(false)
+        setfinishedLoading(videos.length > 0)
         fetch(`https://bosler.it:3000/playlistValues/${encodeURIComponent(link)}`)
             .then((o) => o.text())
             .then((o) => {
@@ -73,6 +76,7 @@ function Supercut() {
                 console.log(ex);
             });
     }
+
 
     useEffect(() => {
         window.history.replaceState("", "select videos to use", "/supercut");
@@ -102,6 +106,8 @@ function Supercut() {
         setactivated(new Array(videos.length).fill(changeValue));
     }
 
+
+
     return (
         <div>
             <BackHomeButton/>
@@ -128,22 +134,27 @@ function Supercut() {
             {!finishedLoading ? (
                 <>
                     <FontAwesomeIcon className={styles.spinning + " " + styles.loading} icon={faCircleNotch}/>
-                    <div className={styles.pleaseWait}>Loading videos... This can take multiple minutes...</div>
+                    <div className={styles.pleaseWait}>Loading videos... This can take multiple minutes...<br/>
+                        Loading ca. 50 videos/second <br/>
+                        Avoid large channels.</div>
                 </>
             ) : (
                 videos.map((video, idx) => {
                     //console.log(video);
                     let thumbnailLinks = video["thumbnails"];
                     return (
-                        <VideoCard
-                            id={idx}
-                            url={video["original_url"]}
-                            thumbnailLink={video["thumbnail"] === undefined ? thumbnailLinks[thumbnailLinks.length - 1]["url"] : video["thumbnail"]}
-                            title={video["title"]}
-                            channelName={video["uploader"]}
-                            activated={activated}
-                            setactivated={setactivated}
-                        />
+                        <VisibilitySensor>
+                            <VideoCard
+                                id={idx}
+                                url={video["original_url"]}
+                                thumbnailLink={video["thumbnail"] === undefined ? thumbnailLinks[thumbnailLinks.length - 1]["url"] : video["thumbnail"]}
+                                title={video["title"]}
+                                channelName={video["uploader"]}
+                                activated={activated}
+                                setactivated={setactivated}
+                                finishedLoading={finishedSmallLoading}
+                            />
+                        </VisibilitySensor>
                     );
                 })
             )}

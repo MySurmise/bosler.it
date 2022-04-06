@@ -12,6 +12,7 @@ interface videoCardI {
     url: string;
     activated: (boolean | undefined)[];
     setactivated: any;
+    finishedLoading: boolean;
 }
 
 function VideoCard(props: videoCardI) {
@@ -20,9 +21,7 @@ function VideoCard(props: videoCardI) {
         <div className={styles.videoCard}>
             <a href={props.url}>
                 <div className={styles.videoCardTitle}>{props.title}</div>
-
-                <img className={styles.videoCardThumbnail} src={props.thumbnailLink} alt="thumbnail"/>
-
+                <img loading='lazy' className={styles.videoCardThumbnail} src={props.thumbnailLink} alt="thumbnail"/>
                 <div className={styles.videoCardAuthor}>{props.channelName}</div>
             </a>
                 <FontAwesomeIcon
