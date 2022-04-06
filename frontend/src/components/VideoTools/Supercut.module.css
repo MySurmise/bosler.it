@@ -12,6 +12,90 @@
 
     }
 
+    .tableHead {
+        position: fixed;
+        background-color: black;
+        height: 8vh;
+        border: 2px whitesmoke solid;
+        border-radius: 1vh 1vh 0 0;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 1vh;
+        box-sizing: border-box;
+        z-index: 15;
+    }
+
+    .searchOuter {
+        position: fixed;
+        height:8vh;
+        width: 8vh;
+        margin: 0;
+        top: 45%;
+        right: 5%;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .cutOuter {
+        position: fixed;
+        height:8vh;
+        width: 8vh;
+        margin: 0;
+        top: 35%;
+        right: 5%;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .plus {
+        position: fixed;
+        top: 60%;
+        height: 8vh;
+        color:rgb(187, 187, 187);
+        right: 5%;
+        transition: all 0.2s ease-out;
+        background-color: black;
+        border-radius: 4vh;
+    }
+
+    .plus:hover {
+        height: 10vh;
+        top: calc(60% - 1vh);
+        right: calc(5% - 1vh);
+        cursor:pointer;
+    }
+
+    .searchOuter:hover .searchInner{
+        right: 0;
+    }
+
+    .searchOuter:hover {
+        right: 4%;
+        padding-left: 2%;
+        cursor:pointer;
+        height: 10vh;
+        top: calc(45% - 1vh);
+    }
+
+
+    .cutOuter:hover .cutInner{
+        right: -5%;
+    }
+
+    .cutOuter:hover {
+        right: 4%;
+        padding-left: 2%;
+        cursor:pointer;
+        height: 10vh;
+        top: calc(35% - 1vh);
+    }
+
+    .cutOuter:hover .cutInner{
+        right: -5%;
+    }
+
+    .spaceAtTop {
+        height: 9vh;
+    }
+
 }
 
 @media all and (orientation: portrait) {
@@ -26,16 +110,93 @@
         margin-top: 1vh;
         box-sizing: border-box ;
     }
+
+    .tableHead {
+        position: relative;
+        background-color: black;
+        height: 20vh;
+        border: 2px whitesmoke solid;
+        border-radius: 1vh 1vh 1vh 1vh;
+        left: 50%;
+        transform: translateX(-50%);
+        margin-top: 1vh;
+        box-sizing: border-box;
+        z-index: 15;
+    }
+
+    .cutOuter {
+        position: fixed;
+        height:8vh;
+        width: 8vh;
+        margin: 0;
+        bottom: 5%;
+        left: 15%;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .searchOuter {
+        position: fixed;
+        height:8vh;
+        width: 8vh;
+        margin: 0;
+        bottom: 5%;
+        left: 35%;
+        transition: all 0.2s ease-in-out;
+    }
+
+
+
+    .plus {
+        position: fixed;
+        bottom: 5%;
+        height: 8vh;
+        color:rgb(187, 187, 187);
+        right: 15%;
+        transition: all 0.2s ease-out;
+        background-color: black;
+        border-radius: 4vh;
+
+    }
+
+    .plus:hover {
+        height: 10vh;
+        bottom: calc(5% - 1vh);
+        right: calc(15% - 1vh);
+        cursor:pointer;
+    }
+
+
+
+    .searchOuter:hover {
+        left: 35%;
+        padding-right: 2%;
+        cursor:pointer;
+        height: 10vh;
+        bottom: calc(5% - 1vh);
+    }
+
+
+    .cutOuter:hover {
+        left: 12%;
+        padding-right: 2%;
+        cursor:pointer;
+        height: 10vh;
+        bottom: calc(5% - 1vh);
+    }
+
+    .cutOuter:hover .cutInner{
+        right: 15%;
+    }
+
+    .spaceAtTop {
+        height: 0vh;
+    }
+
 }
 
-.searchOuter {
-    position: absolute;
-    height:8vh;
-    width: 8vh;
-    margin: 0;
-    top: 45%;
-    right: 5%;
-    transition: all 0.2s ease-in-out;
+
+.searchOuter:hover .searchInner{
+    right: 0;
 }
 
 .search {
@@ -43,7 +204,6 @@
     height: 100%;
     color:rgb(187, 187, 187);
 }
-
 
 .searchInner {
     position:absolute;
@@ -54,39 +214,8 @@
     transition: all 0.2s ease-in-out;
 }
 
-.searchOuter:hover .searchInner{
-    right: 0;
-}
 
-.searchOuter:hover {
-    right: 4%;
-    padding-left: 2%;
-    cursor:pointer;
-    height: 10vh;
-    top: calc(45% - 1vh);
-}
 
-.cutOuter {
-    position: absolute;
-    height:8vh;
-    width: 8vh;
-    margin: 0;
-    top: 35%;
-    right: 5%;
-    transition: all 0.2s ease-in-out;
-}
-
-.cutOuter:hover .cutInner{
-    right: -5%;
-}
-
-.cutOuter:hover {
-    right: 4%;
-    padding-left: 2%;
-    cursor:pointer;
-    height: 10vh;
-    top: calc(35% - 1vh);
-}
 
 .cutInner {
     position:absolute;
@@ -98,21 +227,6 @@
 }
 
 
-.plus {
-    position: absolute;
-    top: 60%;
-    height: 8vh;
-    color:rgb(187, 187, 187);
-    right: 5%;
-    transition: all 0.2s ease-out;
-}
-
-.plus:hover {
-    height: 10vh;
-    top: calc(60% - 1vh);
-    right: calc(5% - 1vh);
-    cursor:pointer;
-}
 
 .videoCardThumbnail {
     position: absolute;
@@ -148,16 +262,7 @@
 }
 
 
-.tableHead {
-    height: 8vh;
-    border: 2px whitesmoke solid;
-    border-radius: 1vh 1vh 0 0;
-    position:relative;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 1vh;
-    box-sizing: border-box;
-}
+
 .yes{
     position:absolute;
     color:rgb(0, 134, 34);
@@ -178,6 +283,19 @@
 }
 .yes:hover, .no:hover {
     opacity: 70%;
+}
+
+@media all and (orientation: portrait) {
+    .yes, .no {
+        position: absolute;
+        height: 6vh;
+    }
+    .yes {
+        right: 3vh;
+    }
+    .no {
+        right: 10vh;
+    }
 }
 .activated, .activated:hover {
     opacity: 100%;

@@ -12,7 +12,6 @@ interface videoCardI {
     url: string;
     activated: (boolean | undefined)[];
     setactivated: any;
-    finishedLoading: boolean;
 }
 
 function VideoCard(props: videoCardI) {
@@ -40,7 +39,6 @@ function VideoCard(props: videoCardI) {
                         updateActivated(false);
                     }}
                 />
-
         </div>
     );
 

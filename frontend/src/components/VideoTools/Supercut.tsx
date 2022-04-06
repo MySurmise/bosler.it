@@ -17,6 +17,7 @@ import AddNewVideoPopup from "./AddNewVideoPopup";
 import VideoCard from "./VideoCard";
 import BackHomeButton from "../misc/BackHomeButton";
 import VisibilitySensor from "react-visibility-sensor";
+import Spacer from "../misc/Spacer";
 
 
 function Supercut() {
@@ -130,7 +131,9 @@ function Supercut() {
                         onMouseDown={() => changeAll(false)}
                     />
                 </div>
+
             }
+            <div className={styles.spaceAtTop}/>
             {!finishedLoading ? (
                 <>
                     <FontAwesomeIcon className={styles.spinning + " " + styles.loading} icon={faCircleNotch}/>
@@ -139,6 +142,7 @@ function Supercut() {
                         Avoid large channels.</div>
                 </>
             ) : (
+
                 videos.map((video, idx) => {
                     //console.log(video);
                     let thumbnailLinks = video["thumbnails"];
@@ -152,7 +156,6 @@ function Supercut() {
                                 channelName={video["uploader"]}
                                 activated={activated}
                                 setactivated={setactivated}
-                                finishedLoading={finishedSmallLoading}
                             />
                         </VisibilitySensor>
                     );
