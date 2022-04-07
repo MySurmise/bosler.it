@@ -12,7 +12,7 @@ function VideoMenu() {
 
     const changeToTool = (tool : string) => {
         if (!invalidID) {
-            if (tool == "supercut") {
+            if (tool == "VideoPicker") {
                 window.location.href = "/" + tool + "/" + encodeURIComponent(generatedLink)
             } else {
                 window.location.href = "/" + tool + "/" + idLabel
@@ -52,7 +52,7 @@ function VideoMenu() {
                 ) : (
                     ""
                 )}
-                <button className={styles.button} onClick={() => changeToTool("supercut")}>
+                <button className={styles.button} onClick={() => changeToTool("VideoPicker")}>
                     Make Supercut
                     <br />
                     or

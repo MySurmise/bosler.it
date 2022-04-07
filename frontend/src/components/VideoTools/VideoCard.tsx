@@ -1,8 +1,8 @@
 import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { Dispatch, SetStateAction, useState } from 'react'
-import styles from "./Supercut.module.css";
-
+import styles from "./VideoPicker.module.css";
+import {Icaptions} from "./VideoPicker";
 
 interface videoCardI {
     id: number;
@@ -12,6 +12,8 @@ interface videoCardI {
     url: string;
     activated: (boolean | undefined)[];
     setactivated: any;
+    searchMode: boolean;
+    captions?: Icaptions;
 }
 
 function VideoCard(props: videoCardI) {
@@ -23,6 +25,8 @@ function VideoCard(props: videoCardI) {
                 <img loading='lazy' className={styles.videoCardThumbnail} src={props.thumbnailLink} alt="thumbnail"/>
                 <div className={styles.videoCardAuthor}>{props.channelName}</div>
             </a>
+            {!props.searchMode ? (
+            <>
                 <FontAwesomeIcon
                     icon={faCircleCheck}
                     className={styles.yes + " " + (props.activated[props.id] !== undefined && props.activated[props.id] ? styles.activated : "")}
@@ -39,6 +43,7 @@ function VideoCard(props: videoCardI) {
                         updateActivated(false);
                     }}
                 />
+                </>) : null}
         </div>
     );
 

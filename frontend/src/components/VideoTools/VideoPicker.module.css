@@ -189,7 +189,7 @@
     }
 
     .spaceAtTop {
-        height: 0vh;
+        height: 0;
     }
 
 }
@@ -349,10 +349,11 @@
     right: 0;
     left: 0;
     background-color: rgba(0,0,0,0.5);
+    z-index: 15;
 }
 
 .popupInner {
-    position: absolute;
+    position: fixed;
     transition: all 0.5s ease-in-out;
     background-color: black;
     border: 0.3vh white solid;

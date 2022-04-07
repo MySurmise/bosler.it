@@ -5,7 +5,7 @@ import Relations from "components/Relations";
 import Sandbox from "components/Sandbox";
 import YTExtractor from "components/VideoTools/YTExtractor";
 import VideoMenu from "components/VideoTools/VideoMenu";
-import Supercut from "components/VideoTools/Supercut";
+import VideoPicker from "components/VideoTools/VideoPicker";
 import Main_tq from "components/TypeQuotes/Main_tq"
 import Quotetyping_tq from "components/TypeQuotes/Quotetyping_tq"
 import "styles/App.css";
@@ -49,8 +49,8 @@ function App() {
             <Route path="/mathtools" element={<Mathtools />} />
             <Route path="/videoTools" element={<VideoMenu />} />
             <Route path="/transcribe/:id" element={<YTExtractor />} />
-            <Route path="/supercut/:link" element={<Supercut />} />
-            <Route path="/supercut" element={<Supercut />} />
+            <Route path="/videopicker/:link" element={<VideoPicker />} />
+            <Route path="/videopicker" element={<VideoPicker />} />
             <Route path="/sandbox" element={<Sandbox />} />
             <Route path="/relations" element={<Relations />} />
             <Route path="/tstest" element={<TsTest />} />

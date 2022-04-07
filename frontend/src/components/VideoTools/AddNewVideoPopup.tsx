@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useState} from 'react';
-import styles from './Supercut.module.css'
+import styles from './VideoPicker.module.css'
 import videoMenuStyles from './VideoMenu.module.css';
 import VideoMenu, {extractID} from "./VideoMenu";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
