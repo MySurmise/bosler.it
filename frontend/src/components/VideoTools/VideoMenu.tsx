@@ -125,8 +125,8 @@ function extractID(link: string) : [number, string, boolean, string] {
         return [playListID, idLabel, invalidID, generatedLink]
     } else if (link.includes("youtu.be/")) {
         id = link.split("be/")[1].substring(0, 11)
-    } else if (link.includes("=")) {
-        id = link.split("=")[1].substring(0, 11)
+    } else if (link.includes("v=")) {
+        id = link.split("v=")[1].substring(0, 11)
     } else {
         id = link
     }

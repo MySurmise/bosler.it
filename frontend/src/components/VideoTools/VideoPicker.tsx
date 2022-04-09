@@ -18,6 +18,7 @@ import VideoCard from "./VideoCard";
 import BackHomeButton from "../misc/BackHomeButton";
 import VisibilitySensor from "react-visibility-sensor";
 import Spacer from "../misc/Spacer";
+import {SearchVideoLyrics} from "./SearchVideoLyrics";
 
 
 function VideoPicker() {
@@ -59,15 +60,13 @@ function VideoPicker() {
                         console.log(video);
                     }
                 });
-                videos.map((o) => {
-                    //console.log(o);
-                });
-                console.log("fin");
+
+                console.log("Finished request and added videos.");
                 setfinishedLoading(true);
                 setfinishedSmallLoading(true)
             })
             .catch((ex) => {
-                console.log(ex);
+                console.log("ERROR: " + ex);
             });
     }
 
@@ -102,12 +101,20 @@ function VideoPicker() {
 
     function searchCaptions() {
         setsearchMode(true)
-        for (let i = 0; i < videos.length; i++) {
-            if (activated[i] || activated[i] === undefined) {
-                setcaptions(old => [...old, {video: videos[i]}]);
-            }
-        }
+        let chosenVideos = videos.filter(video => video.activated || video.activated === undefined)
+        console.log(chosenVideos);
+        fetch('https://bosler.it:3000/search', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(chosenVideos)
+        })
+            .then(value => value.text())
+            .then(value => console.log(value))
     }
+
 
     return (
         <div>
@@ -155,29 +162,31 @@ function VideoPicker() {
                         {videos.map((video, idx) => {
                             //console.log(video);
                             let thumbnailLinks = video["thumbnails"];
-                            return (
-                                <VisibilitySensor>
-                                    <VideoCard
-                                        id={idx}
-                                        url={video["original_url"]}
-                                        thumbnailLink={video["thumbnail"] === undefined ? thumbnailLinks[thumbnailLinks.length - 1]["url"] : video["thumbnail"]}
-                                        title={video["title"]}
-                                        channelName={video["uploader"]}
-                                        activated={activated}
-                                        setactivated={setactivated}
-                                        searchMode={searchMode}
-                                    />
-                                </VisibilitySensor>
-                            );
+                                return (
+                                    <VisibilitySensor
+                                    >
+                                        <VideoCard
+                                            id={idx}
+                                            url={video["original_url"]}
+                                            thumbnailLink={video["thumbnail"] === undefined ? thumbnailLinks[thumbnailLinks.length - 1]["url"] : video["thumbnail"]}
+                                            title={video["title"]}
+                                            channelName={video["uploader"]}
+                                            activated={activated}
+                                            setactivated={setactivated}
+                                            searchMode={searchMode}
+                                        />
+                                    </VisibilitySensor>
+                                );
+
                         })}
                         <span className={styles.searchOuter} onClick={() => {
-                            searchCaptions()
+                            return searchCaptions()
                         }}>
                 <FontAwesomeIcon icon={faCircle} className={styles.search}/>
                 <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.searchInner}/>
                 </span>
                         <span className={styles.cutOuter}>
-                <FontAwesomeIcon icon={faCircle} className={styles.search}/>
+                <FontAwesomeIcon icon={faCircle} className={styles.search} />
                 <FontAwesomeIcon icon={faScissors} className={styles.cutInner}/>
                 </span>
                         <FontAwesomeIcon icon={faCirclePlus} className={styles.plus} onClick={() => {
